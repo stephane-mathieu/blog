@@ -1,0 +1,31 @@
+* {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    text-decoration: none;
+}
+
+.menu {
+    height: 10vh;
+    width: 100vw;
+}
+
+.menuNav {
+    height: 100%;
+}
+
+.menuNav ul {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 100%;
+}
+
+.menuNav_item-list {
+    border: none;
+}
+
+a, 
+a:visited {
+    color: black;
+}
