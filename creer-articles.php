@@ -4,18 +4,27 @@
     // Connexion BDD utilisateurs
     $bdd = mysqli_connect('localhost', 'root', '', 'blog');
     mysqli_set_charset($bdd, 'utf-8');
+
+    // Select * from Utlisateur
     $queryUser = mysqli_query($bdd, "SELECT * FROM `utilisateurs`");
     $resultUser = mysqli_fetch_assoc($queryUser);
+    
 
+    //Select * from Categories
+    $queryCategories = mysqli_query($bdd, "SELECT * FROM `categories`");
+    $resultCategories = mysqli_fetch_all($queryCategories, MYSQLI_ASSOC);
+    // var_dump($resultCategories['0']['id']);
 
 
     // Inner Join id (utilisateurs) -> id_utilisateur (articles)
     $queryJoinArticle = mysqli_query($bdd, "SELECT * FROM `utilisateurs` INNER JOIN `articles` WHERE utilisateurs.id = articles.id_utilisateur");
     $resultarticle = mysqli_fetch_all($queryJoinArticle, MYSQLI_ASSOC);
-    var_dump($queryJoinArticle);
+    // var_dump($resultarticle);
 
     // Inner Join id (catégories) -> id_categorie (articles)
     $queryJoinCategory = mysqli_query($bdd, "SELECT * FROM `categories` INNER JOIN `articles` WHERE categories.id = articles.id_categorie");
+    $resultCategory = mysqli_fetch_all($queryJoinCategory);
+    // var_dump($resultCategory);
 
 
 
@@ -23,17 +32,21 @@
         $userArticle = $_POST['createArticle'];
         // $userId = $_SESSION['id'];
         $date = date("Y/m/d H:i:s");
-        $italie = $_POST['italie'];
-        var_dump($italie);
-        
-        
-        $queryArticle = mysqli_query($bdd, "INSERT INTO `articles`(`article`, `id_utilisateur`,`id_categorie`, `date` VALUES ('$userArticle', '', '', '$date')");
-        var_dump($_POST['italie']);
+
+        if($_POST['categories'] == '1'){
+            $categories = 1;
+        }
+        if($_POST['categories'] == '2'){
+            $categories = 2;
+        }
+        if($_POST['categories'] == '3'){
+            $categories = 3;
+        }
+
+        $queryArticle = mysqli_query($bdd, "INSERT INTO `articles`(`article`, `id_utilisateur`,`id_categorie`, `date` VALUES ('$userArticle', '', '$categories', '$date')");
     }
     
-    // $categories = explode("_", $_POST['categories']);
-    // var_dump($categories);
-    
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -50,12 +63,11 @@
         <label for="createArticle"></label>
         <textarea name="createArticle" cols="30" rows="10"></textarea>
 
-        <label for="italie">Italie</label>
-        <input type="checkbox" name="italie">
-        <label for="vietnam">Vietnam</label>
-        <input type="checkbox" name="vietnam">
-        <label for="russie">Russie</label>
-        <input type="checkbox" name="russie">
+        <select name="categories">
+            <option value="1">Italie</option>
+            <option value="2">Vietnam</option>
+            <option value="3">Russie</option>
+        </select>
 
         <button name="submit">Submit</button>
     </form>
