@@ -10,12 +10,6 @@ $bdd = mysqli_connect("localhost","root","root","blog");
 $sql_count_articles = mysqli_query($bdd,'SELECT COUNT(*) AS liste FROM `articles`');
 $count_articles = mysqli_fetch_all($sql_count_articles, MYSQLI_ASSOC);
 
-//requette pour afficher tous les articles
-$sql_articles = mysqli_query($bdd,"SELECT * FROM `articles` ORDER BY `date` DESC LIMIT $debut , $nbr_article_par_page");
-$articles = mysqli_fetch_all($sql_articles, MYSQLI_ASSOC);
-if(count($articles) == 0){
-    header("location: articles.php");
-}
 
 //pagination
 @$page = $_GET["page"];
@@ -26,6 +20,13 @@ $nbr_article_par_page = 5;
 $nbr_page = ceil($count_articles[0]["liste"] / $nbr_article_par_page);
 $debut = ($page - 1) * $nbr_article_par_page;
 
+
+//requette pour afficher tous les articles
+$sql_articles = mysqli_query($bdd,"SELECT * FROM `articles` ORDER BY `date` DESC LIMIT $debut , $nbr_article_par_page");
+$articles = mysqli_fetch_all($sql_articles, MYSQLI_ASSOC);
+if(count($articles) == 0){
+    header("location: articles.php");
+}
 
 
 echo '<pre>';
