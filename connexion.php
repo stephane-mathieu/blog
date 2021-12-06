@@ -16,15 +16,21 @@ mysqli_set_charset($bdd, 'utf-8');
         $query->setFetchMode(PDO::FETCH_ASSOC);
         $query->execute();
         $user=$query->fetchall();
-        var_dump($user);
-
+      
         if(password_verify($password, $user['0']['password'])){
-            session_start();
-            $_SESSION['user'] = $user['0']['login'];
-            $_SESSION['userPass'] = $user['0']['password'];
-            $_SESSION['userId'] = $user['0']['id'];
-            $_SESSION['flash']['error'] = "You are logged now. ";
-            header('location: index.php');
+            if($user[0]['id_droits'] == 1337){
+                session_start();
+                $_SESSION['admin'] = $user;
+                header('Location: admin.php');
+            }else{
+                session_start();
+                $_SESSION['user'] = $user['0']['login'];
+                $_SESSION['userPass'] = $user['0']['password'];
+                $_SESSION['userId'] = $user['0']['id'];
+                $_SESSION['flash']['error'] = "You are logged now. ";
+                header('location: index.php');
+            }
+        
         }
         else {
                 $errors['connect'] = "Incorrect login or password";
