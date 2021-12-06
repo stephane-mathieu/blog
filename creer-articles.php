@@ -27,11 +27,12 @@
         var_dump($italie);
         
         
-        $queryArticle = mysqli_query($bdd, "INSERT INTO `articles`(`article`, `id_utilisateur`,`id_categorie`, `date` VALUES ('$userArticle', '$userId', '$categories', '$date')");
+        $queryArticle = mysqli_query($bdd, "INSERT INTO `articles`(`article`, `id_utilisateur`,`id_categorie`, `date` VALUES ('$userArticle', '', '', '$date')");
+        var_dump($_POST['italie']);
     }
     
-    $categories = explode("_", $_POST['categories'][0]);
-    var_dump($categories);
+    // $categories = explode("_", $_POST['categories']);
+    // var_dump($categories);
     
 ?>
 <!DOCTYPE html>
