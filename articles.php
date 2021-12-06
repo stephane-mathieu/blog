@@ -3,10 +3,7 @@
 //connexion à la base
 // require('./DATABASE/connect-data-base.php');
 
-
-
 $bdd = mysqli_connect("localhost","root","root","blog");
-
 
 
 //requette pour compter les articles
