@@ -70,9 +70,7 @@ if(count($articles) == 0){
                     <tbody>
                         <?php
                        //tri par catégorie des articles
-                                    echo '<pre>';
-                                    var_dump($_POST['categorie']);
-                                    echo '</pre>';
+                                
                                     if(isset($_POST['categorie']) && isset($_POST['submit'])){
 
                                     if(($_POST['categorie']) == 1 ){
@@ -97,25 +95,25 @@ if(count($articles) == 0){
                                                     <td><?= $cat['id_categorie'] ?></td>
                                                     <td><?= $cat['article'] ?></td>
                                                     <td><?= $cat['date'] ?></td>
-                                                    
+                                                    <td> <?php echo '<a href="article.php?id='.$cat['id'] . '">view article</a>';?></td>
                                                 </tr>
-                                            <?php   
+                                                <?php   
                                             }
-
-                                    }
-                                    
-                        else{ 
-                        // On boucle sur tous les articles
-                                foreach($articles as $article){
-                            ?>
-                                <tr>
-                                    <td><?= $article['id'] ?></td>
-                                    <td><?= $article['article'] ?></td>
-                                    <td><?= $article['date'] ?></td>
-                                   
-                                </tr>
-                            <?php
-                            }
+                                            
+                                        }
+                                        
+                                        else{ 
+                                            // On boucle sur tous les articles
+                                            foreach($articles as $article){
+                                                ?>
+                                                    <tr>
+                                                        <td><?= $article['id'] ?></td>
+                                                        <td><?= $article['article'] ?></td>
+                                                        <td><?= $article['date'] ?></td>
+                                                        <td> <?php echo '<a href="article.php?id='.$article['id'] . '">view article</a>';?></td>
+                                                    </tr>
+                                                <?php
+                                                }
                         }
                          ?>
                     </tbody>
