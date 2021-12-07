@@ -1,85 +1,80 @@
 <?php
 session_start();
-
+//connexion a la bdd
 require('./DATABASE/connect-data-base.php');
+$bdd = mysqli_connect("localhost","root","","blog");
+//
 
+//recup de la session conn
 $sessLogin = $_SESSION['user'];
 $sessPasswrd = $_SESSION['userPass'];
-
+$id = $_SESSION['userId'];
+$newlog = $_POST['login'];
 
 $password =  $_POST['password'];
-
-$newlog = $_POST['login'];
 $hashed_pwrd = password_hash($password, PASSWORD_DEFAULT);
 $newpassWrd = $hashed_pwrd;
-// echo '<pre>';
-// var_dump("first login ".$login);
-// echo '</pre>';
+
+var_dump($sessLogin);
+if (isset($_SESSION['user'])) {
+    $requette = $pdo->prepare("SELECT login,password FROM `utilisateurs` WHERE `id`= '$id'");
+    $requette->setFetchMode(PDO::FETCH_ASSOC);
+    $requette->execute();
+    if (isset($requette))
+    $recuper=$requette->fetchall(PDO::FETCH_COLUMN);
+
+    $requ = $pdo->prepare("SELECT password FROM `utilisateurs` WHERE `id`= '$id'");
+    $requ->setFetchMode(PDO::FETCH_ASSOC);
+    $requ->execute();
+    if (isset($requ))
+    $recupsw=$requ->fetchall(PDO::FETCH_COLUMN);
+    
+}
+var_dump($recuper[0]);
+
+$requete_con = mysqli_query($bdd, "SELECT * FROM `utilisateurs` WHERE `login` = '$newlog'");
+$requete_confetch = mysqli_fetch_all($requete_con, MYSQLI_ASSOC);
 
 
-// $query = mysqli_query($bdd,"SELECT * FROM `utilisateurs` WHERE `login`= '$sessLogin'");
-// $result = mysqli_fetch_assoc($query);
-
-$query = $pdo->prepare("SELECT * FROM `utilisateurs` WHERE `login`= '$sessLogin'");
-$query->setFetchMode(PDO::FETCH_ASSOC);
-$query->execute();
-$result=$query->fetchall();
-
-// $requete_con = mysqli_query($bdd, "SELECT * FROM `utilisateurs` WHERE `login` = '$login'");
-// $requete_confetch = mysqli_fetch_all($requete_con, MYSQLI_ASSOC);
-
-$requete_con = $pdo->prepare("SELECT * FROM `utilisateurs` WHERE `login` = '$login'");
-$requete_con->setFetchMode(PDO::FETCH_ASSOC);
-$requete_con->execute();
-$requete_confetch=$requete_con->fetchall();
-
-
-    if(count($requete_confetch) == 0)
+  
+    if(isset($_POST['validerlog']))
     {
         
+        if(!empty($_POST['login'])){
 
-        if(isset($_POST['validerlog']))
-        {
-            
-            $result = $_POST['login'];
-            $newlog = $_POST['login'];
+            if(count($requete_confetch) == 0){
+                var_dump(($_POST['login']));
+                $newlog = $_POST['login'];
 
-            // $update = "UPDATE `utilisateurs` SET `login`='$login' WHERE `login` = '$sessLogin'";
-            // $update_new = mysqli_query($bdd, $update);
-            
-            $update = $pdo->prepare("UPDATE `utilisateurs` SET `login`='$newlog' WHERE `login` = '$sessLogin'");
-            $update->setFetchMode(PDO::FETCH_ASSOC);
-            $update->execute();
-            $update_new=$update->fetchall();
-
-            session_destroy();
-            header('Location: connexion.php');
-           
+                $update = "UPDATE `utilisateurs` SET `login`= '$newlog' WHERE `id` = '$id'";
+                $update_new = mysqli_query($bdd, $update);
+    
+                if(isset($update_new)) {
+    
+                    $requette = $pdo->prepare("SELECT `login` FROM `utilisateurs` WHERE `id`= '$id'");
+                    $requette->setFetchMode(PDO::FETCH_ASSOC);
+                    $requette->execute();
+                    $recuper=$requette->fetchall(PDO::FETCH_COLUMN);
+    
+                }
+            } elseif(count($requete_confetch) != 0){
+                echo "login alredy used";
+            }
         }
-            
 
-        elseif(isset($_POST['validerpass']))
-        {
-            
-            $password = $result['password'];
-            
-            // $update2 = "UPDATE `utilisateurs` SET `password`='$newpassWrd' WHERE `login` = '$sessLogin'";
-            // $update_new2 = mysqli_query($bdd, $update2);
+            if(!empty($_POST['password'])){
+               var_dump(($_POST['password']));
+                // $password = $recupsw[0];
+    
+                $update2 = $pdo->prepare("UPDATE `utilisateurs` SET `password`='$newpassWrd' WHERE `login` = '$sessLogin'");
+                $update2->setFetchMode(PDO::FETCH_ASSOC);
+                $update2->execute();
+                $update_new2=$update2->fetchall();
+    
+            }
 
-
-            $update2 = $pdo->prepare("UPDATE `utilisateurs` SET `password`='$newpassWrd' WHERE `login` = '$sessLogin'");
-            $update2->setFetchMode(PDO::FETCH_ASSOC);
-            $update2->execute();
-            $update_new2=$update2->fetchall();
-            
-
-            session_destroy();
-            header('Location:connexion.php');
         }
-            
-} elseif(count($requete_confetch) != 0){
-    echo "login alredy used";
-}
+   
 
 
 
@@ -97,26 +92,26 @@ $requete_confetch=$requete_con->fetchall();
 <body class="profilBody">
     <main>
     <section class= formulaire>
-        <h2 class="sous-titre">Profil de <?php echo $sessLogin ?> </h2>
+        <h2 class="sous-titre">Profil de <?php echo $recuper[0] ?> </h2>
         <form action="profil.php" method="post" class="form">
                 <div class="form-group">
                     <label for="login">Nouveau login:</label><br>
-                    <input type="login" name="login" class="form-control" placeholder="Login"  value ="<?php echo $sessLogin ?>" autocomplete="off">
+                    <input type="login" name="login" class="form-control" placeholder="Login"  value ="<?php echo $recuper[0]; ?>" autocomplete="off">
                 </div>
-                <div class="form-group">
-                    <button type="submit" name= "validerlog" class="btn btn-primary btn-block">Valider</button>
-                </div>  
                 <div class="form-group">
                     <label for="login">Nouveau password:</label><br>
                     <input type="password" name="password" class="form-control2" placeholder="Mot de passe"   autocomplete="off">
                 </div>
-                <div class="form-group">
+                <!-- <div class="form-group">
                     <label for="login">Confirmer le password:</label><br>
                     <input type="passwordconfirm" name="passwordconfirm" class="form-control" placeholder="Confimer le nouveau mot de passe"   autocomplete="off">
-                </div>
-                <div class="form-group">
+                </div> -->
+                <!-- <div class="form-group">
                     <button type="submit" name= "validerpass" class="btn">Valider</button>
-                </div>   
+                </div> -->
+                <div class="form-group">
+                    <button type="submit" name= "validerlog" class="btn btn-primary btn-block">Valider</button>
+                </div>
         </form>
         </section>
     </main>
