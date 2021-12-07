@@ -1,14 +1,18 @@
 <?php
-    // require('./DATABASE/connect-data-base.php');
 
+session_start();
     // Connexion BDD utilisateurs
     $bdd = mysqli_connect('localhost', 'root', '', 'blog');
     mysqli_set_charset($bdd, 'utf-8');
 
+    $loginnn = $_SESSION['user'];
+
     // Select * from Utlisateur
-    $queryUser = mysqli_query($bdd, "SELECT * FROM `utilisateurs`");
+    $queryUser = mysqli_query($bdd, "SELECT * FROM `utilisateurs` where login = '$loginnn'");
     $resultUser = mysqli_fetch_assoc($queryUser);
-    
+
+    var_dump($_SESSION['user']);
+    var_dump($resultUser['id']);
 
     //Select * from Categories
     $queryCategories = mysqli_query($bdd, "SELECT * FROM `categories`");
@@ -30,7 +34,7 @@
 
     if(isset($_POST['submit'])){
         $userArticle = $_POST['createArticle'];
-        // $userId = $_SESSION['id'];
+        $userId = $resultUser['id'];
         $date = date("Y/m/d H:i:s");
 
         if(empty($userArticle)){
@@ -47,7 +51,7 @@
             $categories = 3;
         }
         
-        $queryArticle = mysqli_query($bdd, "INSERT INTO `articles`(`article`, `id_utilisateur`, `id_categorie`, `date`) VALUES ('$userArticle','5','$categories','$date')");
+        $queryArticle = mysqli_query($bdd, "INSERT INTO `articles`(`article`, `id_utilisateur`, `id_categorie`, `date`) VALUES ('$userArticle','$userId','$categories','$date')");
         
     }
     

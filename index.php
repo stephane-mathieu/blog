@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,5 +9,8 @@
 </head>
 <body>
     <?php require 'header.php'?>
+    <?php
+    echo $_SESSION['user'];
+    ?>
 </body>
 </html>
