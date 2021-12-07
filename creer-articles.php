@@ -33,17 +33,22 @@
         // $userId = $_SESSION['id'];
         $date = date("Y/m/d H:i:s");
 
+        if(empty($userArticle)){
+            echo "Veuillez rédiger un article.";
+        }
+
         if($_POST['categories'] == '1'){
             $categories = 1;
         }
         if($_POST['categories'] == '2'){
-            $categories = 2;
+              $categories = 2;
         }
         if($_POST['categories'] == '3'){
             $categories = 3;
         }
-
-        $queryArticle = mysqli_query($bdd, "INSERT INTO `articles`(`article`, `id_utilisateur`,`id_categorie`, `date` VALUES ('$userArticle', '', '$categories', '$date')");
+        
+        $queryArticle = mysqli_query($bdd, "INSERT INTO `articles`(`article`, `id_utilisateur`, `id_categorie`, `date`) VALUES ('$userArticle','5','$categories','$date')");
+        
     }
     
 
