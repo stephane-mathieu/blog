@@ -29,11 +29,6 @@ if(count($articles) == 0){
 }
 
 
-echo '<pre>';
-var_dump($nbr_page);
-echo '</pre>';
-
-
 ?>
 
 <!DOCTYPE html>
@@ -49,6 +44,14 @@ echo '</pre>';
         <div class="row">
             <section class="liste-article">
                 <h1>Liste des articles</h1>
+                <form action = "" method= "post">
+                <select name = "categorie">
+                    <option value="1">Italie</option>
+                    <option value="2">Vietnam</option>
+                    <option value="3">Russie</option>
+                </select>
+                <button name = "submit">Valider</button>
+                </form>
                 <?php
                     for($i = 1; $i <= $nbr_page; $i++){
                         if($page != $i)
@@ -65,17 +68,63 @@ echo '</pre>';
                     </thead>
                     <tbody>
                         <?php
+                        // if(isset($_POST['submit'])){
+                            // if($_POST['categorie'] == 1 ){
+                            //  $sessionItalie = $_SESSION['italie'];
+                            //  $categorie = 1;
+                            
+                                // if(!empty($_POST['categorie'])){
+                                    echo '<pre>';
+                                    var_dump($_POST['categorie']);
+                                    echo '</pre>';
+                                    if(isset($_POST['categorie']) && isset($_POST['submit'])){
+
+                                    if(isset($_POST['categorie']) == 1 ){
+                                        $sql_categories = mysqli_query($bdd,"SELECT * FROM `articles` WHERE `id_categorie` = 1");
+                                        $result = mysqli_fetch_all($sql_categories, MYSQLI_ASSOC);
+                                    }  
+
+                                    if(isset($_POST['categorie']) == 2 ){
+                                        $sql_categories = mysqli_query($bdd,"SELECT * FROM `articles` WHERE `id_categorie` = 2");
+                                        $result = mysqli_fetch_all($sql_categories, MYSQLI_ASSOC);
+                                    }    
+
+                                    if(isset($_POST['categorie']) == 3 ){
+                                        $sql_categories = mysqli_query($bdd,"SELECT * FROM `articles` WHERE `id_categorie` = 3");
+                                        $result = mysqli_fetch_all($sql_categories, MYSQLI_ASSOC);   
+                                    }
+
+
+                                        foreach($result as $cat){
+                                            ?>
+                                                <tr>
+                                                    <td><?= $cat['id_categorie'] ?></td>
+                                                    <td><?= $cat['article'] ?></td>
+                                                    <td><?= $cat['date'] ?></td>
+                                                </tr>
+                                            <?php   
+                                            }
+
+                                    }
+                                    
+                                // }
+                                    
+                       
+                        // }
+                        
+                        else{ 
                         // On boucle sur tous les articles
-                        foreach($articles as $article){
-                        ?>
-                            <tr>
-                                <td><?= $article['id'] ?></td>
-                                <td><?= $article['article'] ?></td>
-                                <td><?= $article['date'] ?></td>
-                            </tr>
-                        <?php
+                                foreach($articles as $article){
+                            ?>
+                                <tr>
+                                    <td><?= $article['id'] ?></td>
+                                    <td><?= $article['article'] ?></td>
+                                    <td><?= $article['date'] ?></td>
+                                </tr>
+                            <?php
+                            }
                         }
-                        ?>
+                         ?>
                     </tbody>
                 </table>
             </section>
