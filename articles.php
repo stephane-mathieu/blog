@@ -75,17 +75,17 @@ if(count($articles) == 0){
                                     echo '</pre>';
                                     if(isset($_POST['categorie']) && isset($_POST['submit'])){
 
-                                    if(isset($_POST['categorie']) == 1 ){
+                                    if(($_POST['categorie']) == 1 ){
                                         $sql_categories = mysqli_query($bdd,"SELECT * FROM `articles` WHERE `id_categorie` = 1");
                                         $result = mysqli_fetch_all($sql_categories, MYSQLI_ASSOC);
                                     }  
 
-                                    if(isset($_POST['categorie']) == 2 ){
+                                    if(($_POST['categorie']) == 2 ){
                                         $sql_categories = mysqli_query($bdd,"SELECT * FROM `articles` WHERE `id_categorie` = 2");
                                         $result = mysqli_fetch_all($sql_categories, MYSQLI_ASSOC);
                                     }    
 
-                                    if(isset($_POST['categorie']) == 3 ){
+                                    if(($_POST['categorie']) == 3 ){
                                         $sql_categories = mysqli_query($bdd,"SELECT * FROM `articles` WHERE `id_categorie` = 3");
                                         $result = mysqli_fetch_all($sql_categories, MYSQLI_ASSOC);   
                                     }
@@ -97,6 +97,7 @@ if(count($articles) == 0){
                                                     <td><?= $cat['id_categorie'] ?></td>
                                                     <td><?= $cat['article'] ?></td>
                                                     <td><?= $cat['date'] ?></td>
+                                                    
                                                 </tr>
                                             <?php   
                                             }
@@ -111,6 +112,7 @@ if(count($articles) == 0){
                                     <td><?= $article['id'] ?></td>
                                     <td><?= $article['article'] ?></td>
                                     <td><?= $article['date'] ?></td>
+                                   
                                 </tr>
                             <?php
                             }
