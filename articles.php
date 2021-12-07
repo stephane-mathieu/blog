@@ -53,6 +53,7 @@ if(count($articles) == 0){
                 <button name = "submit">Valider</button>
                 </form>
                 <?php
+                //savoir sur qu'elle page nous sommes 
                     for($i = 1; $i <= $nbr_page; $i++){
                         if($page != $i)
                             echo "<a href='?page=$i'>$i</a>&nbsp";
@@ -68,12 +69,7 @@ if(count($articles) == 0){
                     </thead>
                     <tbody>
                         <?php
-                        // if(isset($_POST['submit'])){
-                            // if($_POST['categorie'] == 1 ){
-                            //  $sessionItalie = $_SESSION['italie'];
-                            //  $categorie = 1;
-                            
-                                // if(!empty($_POST['categorie'])){
+                       //tri par catégorie des articles
                                     echo '<pre>';
                                     var_dump($_POST['categorie']);
                                     echo '</pre>';
@@ -94,7 +90,7 @@ if(count($articles) == 0){
                                         $result = mysqli_fetch_all($sql_categories, MYSQLI_ASSOC);   
                                     }
 
-
+                        // affichage des articles par catégorie
                                         foreach($result as $cat){
                                             ?>
                                                 <tr>
@@ -107,11 +103,6 @@ if(count($articles) == 0){
 
                                     }
                                     
-                                // }
-                                    
-                       
-                        // }
-                        
                         else{ 
                         // On boucle sur tous les articles
                                 foreach($articles as $article){
