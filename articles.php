@@ -3,7 +3,7 @@
 //connexion à la base
 // require('./DATABASE/connect-data-base.php');
 
-$bdd = mysqli_connect("localhost","root","root","blog");
+$bdd = mysqli_connect("localhost","root","","blog");
 
 
 //requette pour compter les articles
@@ -29,6 +29,7 @@ if(count($articles) == 0){
 }
 
 
+
 ?>
 
 <!DOCTYPE html>
@@ -51,6 +52,7 @@ if(count($articles) == 0){
                     <option value="3">Russie</option>
                 </select>
                 <button name = "submit">Valider</button>
+                <button name="reset"><a href="articles.php?page=1">Reset</a></button>
                 </form>
                 <?php
                 //savoir sur qu'elle page nous sommes 
