@@ -1,8 +1,8 @@
 <?php
-    session_start();
-    // Connexion BDD utilisateurs
-    $bdd = mysqli_connect('localhost', 'root', '', 'blog'); 
-    mysqli_set_charset($bdd, 'utf-8');
+session_start();
+// Connexion BDD utilisateurs
+$bdd = mysqli_connect('localhost', 'root', '', 'blog'); 
+mysqli_set_charset($bdd, 'utf-8');
   
 
 @$loogin = $_SESSION['user'];
@@ -10,19 +10,32 @@
 $queryUser = mysqli_query($bdd, "SELECT * FROM `utilisateurs` WHERE login = '$loogin'");
 $resultUser = mysqli_fetch_all($queryUser,MYSQLI_ASSOC);
 
+// Categorie
+$sql = mysqli_query($bdd,"SELECT categories.* FROM categories ");
+$result_cat = mysqli_fetch_all($sql, MYSQLI_ASSOC);
+
+$sql_recup = mysqli_query($bdd,"SELECT categories.*, articles.id_categorie FROM categories INNER JOIN articles WHERE categories.id = articles.id_categorie;");
+$result_article_tri = mysqli_fetch_all($sql_recup, MYSQLI_ASSOC);
+
+@$get = $_GET['categorie'];
+$sql_cat = mysqli_query($bdd, "SELECT * FROM categories WHERE nom= '$get'");
+$recup_sql = mysqli_fetch_all($sql_cat, MYSQLI_ASSOC);
+
 ?>
 <header class="menu">
     <nav class="menuNav">
         <ul>
             <li><a href="index.php">Accueil</a></li>
             <li><a href="articles.php">Articles</a></li>
-            <li>
-                <select>
-                    <option value="">Catégories</option>
-                    <option value="">Italien</option>
-                    <option value="">Vietnamien</option>
-                    <option value="">Russe</option>
-                </select>
+            <li><p>Catégories</p>
+            <?php foreach($result_cat as $cat){?>
+                <ul>    
+                    <li>
+                        <a href="article.php?id='.$cat['id'] . '" value="<?php echo $cat['nom'];?>"><?php echo $cat['nom'];?>
+                        </a>
+                    </li>
+                </ul>
+            <?php } ?>
             </li>
 
             <!-- Si l'user n'est pas connecté -->
