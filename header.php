@@ -13,6 +13,7 @@
     <li><a href="inscription.php">Inscription</a></li>
     <li><a href="connexion.php">Connexion</a></li>
     <li><a href="articles.php">Articles</a></li>
+    <li><a href="deconnexion.php">Deconnexion</a></li>
 
     <!-- Si l'user est connecté -->
     <li><a href="profil.php">Profil</a></li>
