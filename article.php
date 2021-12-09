@@ -8,18 +8,9 @@
      $query = mysqli_query($bdd, $req);
      $result = mysqli_fetch_all($query,MYSQLI_ASSOC);
 
-
-     $querry = mysqli_query($bdd, "SELECT commentaires.id_article,commentaire,articles.article FROM articles INNER JOIN commentaires WHERE commentaires.id_article = articles.id ");
-     $result1 = mysqli_fetch_all($querry,MYSQLI_ASSOC);
-
-     $result1[0]['id_article'] = $test;
-     $que = mysqli_query($bdd, "SELECT * from commentaires where id_article = '$test'");
-     $resu = mysqli_fetch_all($que,MYSQLI_ASSOC);
-
-     $query = mysqli_query($bdd, "SELECT commentaires.id,login,commentaire,date from utilisateurs INNER JOIN commentaires ON utilisateurs.id = commentaires.id_utilisateur");
+     $query = mysqli_query($bdd, "SELECT utilisateurs.login, commentaires.commentaire, commentaires.date, commentaires.id_article FROM utilisateurs INNER JOIN commentaires WHERE utilisateurs.id = commentaires.id_utilisateur");
      $resultlog= mysqli_fetch_all($query,MYSQLI_ASSOC);
 
-    //  var_dump($resultlog);
 
 
 if(isset($_POST['submit'])){
@@ -28,8 +19,8 @@ if(isset($_POST['submit'])){
     $commm = $_POST['commentaire'];
     $res = mysqli_query($bdd, "INSERT INTO commentaires(commentaire,id_article,id_utilisateur,date) VALUES ('$commm','$test','$idd','$DateAndTime')");
     if(isset($res)){
-        $que = mysqli_query($bdd, "SELECT * from commentaires where id_article = '$test'");
-        $resu = mysqli_fetch_all($que,MYSQLI_ASSOC);
+        $query = mysqli_query($bdd, "SELECT utilisateurs.login, commentaires.commentaire, commentaires.date, commentaires.id_article FROM utilisateurs INNER JOIN commentaires WHERE utilisateurs.id = commentaires.id_utilisateur");
+        $resultlog= mysqli_fetch_all($query,MYSQLI_ASSOC);
     }
 
 }
@@ -49,21 +40,25 @@ if(isset($_POST['submit'])){
      <thead>
          <th>Article</th>
          <th>Commentaire</th>
+         <th>login</th>
      </thead>
      <tbody>
          <tr>
              <td><?= $result[0]['article'] ?></td>
-         <?php
-     foreach($resu as $article){
-                            ?>
-                                <td><?= $article['commentaire']?> </td>
-                                <?php
-                            }
-                            ?>
-                            </tr>
+             <?php
+            foreach($resultlog as $log){
+                if($log['id_article'] == $test){
+                ?>
+                <td><?= $log['commentaire']?></td>
+                <td><?= $log['login']?></td>
+                <?php
+                }
+            }
+            ?> 
+
+        </tr>
      </tbody>
 <?php
-var_dump($artic2);
 ?>
 <div class="container col-5 position-absolute top-50 start-50 translate-middle">
     <form  class ="row g-3"action="" method="POST">
