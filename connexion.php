@@ -1,6 +1,6 @@
 <?php
 require('./DATABASE/connect-data-base.php');
-$bdd = mysqli_connect('localhost', 'root', '', 'blog');
+$bdd = mysqli_connect('localhost', 'root', 'root', 'blog');
 mysqli_set_charset($bdd, 'utf-8');
     if(!empty($_POST) && !empty($_POST['login']) && !empty($_POST['password'])){
 

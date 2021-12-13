@@ -3,7 +3,7 @@
 //connexion à la base
 // require('./DATABASE/connect-data-base.php');
 
-$bdd = mysqli_connect("localhost","root","","blog");
+$bdd = mysqli_connect("localhost","root","root","blog");
 
 
 //requette pour compter les articles
@@ -28,9 +28,25 @@ if(count($articles) == 0){
     header("location: articles.php");
 }
 
+//requete pour afficher les categories dans le selecteur html
+$sql = mysqli_query($bdd,"SELECT categories.* FROM categories ");
+$result_cat = mysqli_fetch_all($sql, MYSQLI_ASSOC);
+
+$sql_recup = mysqli_query($bdd,"SELECT categories.*, articles.id_categorie FROM categories INNER JOIN articles WHERE categories.id = articles.id_categorie;");
+$result_article_tri = mysqli_fetch_all($sql_recup, MYSQLI_ASSOC);
+
+
+$oi = $_GET['categorie'];
+$sql_categori = mysqli_query($bdd,"SELECT * FROM `categories` WHERE `nom` = '$oi'");
+$result1 = mysqli_fetch_all($sql_categori, MYSQLI_ASSOC);
+
+
 
 
 ?>
+
+
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -45,14 +61,13 @@ if(count($articles) == 0){
         <div class="row">
             <section class="liste-article">
                 <h1>Liste des articles</h1>
-                <form action = "" method= "post">
+                <form action = "" method= "GET">
                 <select name = "categorie">
-                    <option value="1">Italie</option>
-                    <option value="2">Vietnam</option>
-                    <option value="3">Russie</option>
+                    <?php foreach($result_cat as $categorie){?>
+                    <option value="<?php echo $categorie['nom'];?> "><?php echo $categorie['nom'];?> </option>
+                    <?php } ?>
                 </select>
                 <button name = "submit">Valider</button>
-                <button name="reset"><a href="articles.php?page=1">Reset</a></button>
                 </form>
                 <?php
                 //savoir sur qu'elle page nous sommes 
@@ -72,23 +87,14 @@ if(count($articles) == 0){
                     <tbody>
                         <?php
                        //tri par catégorie des articles
-                                
-                                    if(isset($_POST['categorie']) && isset($_POST['submit'])){
 
-                                    if(($_POST['categorie']) == 1 ){
-                                        $sql_categories = mysqli_query($bdd,"SELECT * FROM `articles` WHERE `id_categorie` = 1");
-                                        $result = mysqli_fetch_all($sql_categories, MYSQLI_ASSOC);
-                                    }  
+                                    if(isset($_GET['categorie']) && isset($_GET['submit'])){
 
-                                    if(($_POST['categorie']) == 2 ){
-                                        $sql_categories = mysqli_query($bdd,"SELECT * FROM `articles` WHERE `id_categorie` = 2");
-                                        $result = mysqli_fetch_all($sql_categories, MYSQLI_ASSOC);
-                                    }    
-
-                                    if(($_POST['categorie']) == 3 ){
-                                        $sql_categories = mysqli_query($bdd,"SELECT * FROM `articles` WHERE `id_categorie` = 3");
-                                        $result = mysqli_fetch_all($sql_categories, MYSQLI_ASSOC);   
-                                    }
+                                        if(($_GET['categorie']) == $oi ){
+                                            $idart = $result1[0]['id'];
+                                            $sql_categories = mysqli_query($bdd,"SELECT * FROM `articles` WHERE `id_categorie` = '$idart'");
+                                            $result = mysqli_fetch_all($sql_categories, MYSQLI_ASSOC);
+                                        }
 
                         // affichage des articles par catégorie
                                         foreach($result as $cat){
