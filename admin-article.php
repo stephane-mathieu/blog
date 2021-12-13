@@ -6,6 +6,9 @@
         $req = "SELECT * FROM articles";
         $query = mysqli_query($conn, $req);
         $result = mysqli_fetch_all($query,MYSQLI_ASSOC);
+        $req2 = "SELECT commentaire FROM commentaires";
+        $query2 = mysqli_query($conn, $req);
+        $result2 = mysqli_fetch_all($query2,MYSQLI_ASSOC);
     }
 ?>
 
