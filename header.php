@@ -41,7 +41,7 @@ $result_article_tri = mysqli_fetch_all($sql_recup, MYSQLI_ASSOC);
         </li>
 
         <!-- Si l'user n'est pas connecté -->
-        <?php if (!isset($_SESSION)) { ?>
+        <?php if (!isset($loogin)) { ?>
             <li>
                 <a href="inscription.php">Inscription</a>
             </li>
@@ -52,7 +52,7 @@ $result_article_tri = mysqli_fetch_all($sql_recup, MYSQLI_ASSOC);
 
 
         <!-- Si l'user est connecté -->
-        <?php if (isset($_SESSION)) { ?>
+        <?php if (isset($loogin)) { ?>
             <li>
                 <a href="profil.php">Profil</a>
             </li>
@@ -72,7 +72,7 @@ $result_article_tri = mysqli_fetch_all($sql_recup, MYSQLI_ASSOC);
             </li>
         <?php }; ?>
         <?php
-        if (@$resultUser[0]["id_droits"] == "1337" || $resultUser[0]["id_droits"] == "42") {
+        if (@$resultUser[0]["id_droits"] == "1337") {
         ?><li class="nav-item">
                 <a href="admin.php">admin</a>
             </li>

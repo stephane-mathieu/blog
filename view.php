@@ -1,12 +1,14 @@
 <?php
-    session_start();
     require('./DATABASE/database-sqli.php');
-    if(isset($_SESSION['admin'])){
-        $req = "SELECT * FROM utilisateurs";
+    session_start();
+    $test = $_GET['id'];
+        $req = "SELECT * FROM utilisateurs where id = '$test'";
         $query = mysqli_query($conn, $req);
         $result = mysqli_fetch_all($query,MYSQLI_ASSOC);
-    }
+
 ?>
+
+
 
 
 <!DOCTYPE html>
@@ -29,10 +31,6 @@
     </tr>
   </thead>
   <tbody>
-    <?php
-      if(isset($_SESSION['admin'])){
-    echo'<a href="add.php">ajouter un user</a>';
-      }?>
   <?php foreach ($result as $st) {  ?>
                     <tr>
                         <td> <?= $st['id']; ;?> </td>
@@ -40,12 +38,10 @@
                         <td> <?= $st['password']; ?> </td>
                         <td> <?= $st['email']; ?> </td>
                         <td> <?= $st['id_droits']; ?> </td>
-                        <td> <?php echo '<a href="view.php?id='.$st['id'] . '">view</a>';?></td>
-                        <td> <?php echo '<a href="update.php?id='.$st['id'] . '">update</a>';?></td>
-                        <td> <?php echo '<a href="delete.php?id='.$st['id'] . '">delete</a>';?></td>
                     </tr>
                 <?php }; ?>
         </tbody>
+  </tbody>
   </tbody>
 </table>
 

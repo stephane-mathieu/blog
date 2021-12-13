@@ -13,7 +13,8 @@ $count_articles = mysqli_fetch_all($sql_count_articles, MYSQLI_ASSOC);
 
 //pagination
 @$page = $_GET["page"];
-if(empty($page)){
+
+if (empty($page)) {
     $page = 1;
 }
 $nbr_article_par_page = 5;
@@ -39,7 +40,6 @@ $result_article_tri = mysqli_fetch_all($sql_recup, MYSQLI_ASSOC);
 $oi = $_GET['categorie'];
 $sql_categori = mysqli_query($bdd,"SELECT * FROM `categories` WHERE `nom` = '$oi'");
 $result1 = mysqli_fetch_all($sql_categori, MYSQLI_ASSOC);
-
 
 
 
@@ -86,44 +86,41 @@ $result1 = mysqli_fetch_all($sql_categori, MYSQLI_ASSOC);
                     </thead>
                     <tbody>
                         <?php
-                       //tri par catégorie des articles
+                        //tri par catégorie des articles
 
-                                    if(isset($_GET['categorie']) && isset($_GET['submit'])){
+                        if (isset($_GET['categorie'])) {
 
-                                        if(($_GET['categorie']) == $oi ){
-                                            $idart = $result1[0]['id'];
-                                            $sql_categories = mysqli_query($bdd,"SELECT * FROM `articles` WHERE `id_categorie` = '$idart'");
-                                            $result = mysqli_fetch_all($sql_categories, MYSQLI_ASSOC);
-                                        }
+                            if (($_GET['categorie']) == $oi) {
+                                $idcate = $result1[0]['id'];
+                                $sql_categories = mysqli_query($bdd, "SELECT * FROM `articles` WHERE `id_categorie` = '$idcate'");
+                                $result = mysqli_fetch_all($sql_categories, MYSQLI_ASSOC);
+                            }
 
-                        // affichage des articles par catégorie
-                                        foreach($result as $cat){
-                                            ?>
-                                                <tr>
-                                                    <td><?= $cat['id_categorie'] ?></td>
-                                                    <td><?= $cat['article'] ?></td>
-                                                    <td><?= $cat['date'] ?></td>
-                                                    <td> <?php echo '<a href="article.php?id='.$cat['id'] . '">view article</a>';?></td>
-                                                </tr>
-                                                <?php   
-                                            }
-                                            
-                                        }
-                                        
-                                        else{ 
-                                            // On boucle sur tous les articles
-                                            foreach($articles as $article){
-                                                ?>
-                                                    <tr>
-                                                        <td><?= $article['id'] ?></td>
-                                                        <td><?= $article['article'] ?></td>
-                                                        <td><?= $article['date'] ?></td>
-                                                        <td> <?php echo '<a href="article.php?id='.$article['id'] . '">view article</a>';?></td>
-                                                    </tr>
-                                                <?php
-                                                }
+                            // affichage des articles par catégorie
+                            foreach ($result as $cat) {
+                        ?>
+                                <tr>
+                                    <td><?= $cat['id_categorie'] ?></td>
+                                    <td><?= $cat['article'] ?></td>
+                                    <td><?= $cat['date'] ?></td>
+                                    <td> <?php echo '<a href="article.php?id=' . $cat['id'] . '">view article</a>'; ?></td>
+                                </tr>
+                            <?php
+                            }
+                        } else {
+                            // On boucle sur tous les articles
+                            foreach ($articles as $article) {
+                            ?>
+                                <tr>
+                                    <td><?= $article['id'] ?></td>
+                                    <td><?= $article['article'] ?></td>
+                                    <td><?= $article['date'] ?></td>
+                                    <td> <?php echo '<a href="article.php?id=' . $article['id'] . '">view article</a>'; ?></td>
+                                </tr>
+                        <?php
+                            }
                         }
-                         ?>
+                        ?>
                     </tbody>
                 </table>
             </section>
