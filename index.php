@@ -15,6 +15,7 @@ $affiche_article = mysqli_fetch_all($sql_affiche_article, MYSQLI_ASSOC);
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Page d'accueil</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
     <?php require 'header.php'?>
