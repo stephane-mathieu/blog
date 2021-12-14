@@ -1,5 +1,6 @@
 <?php 
-    require('./DATABASE/connect-data-base.php');
+    // require('./DATABASE/connect-data-base.php');
+    require('./DATABASE/database-sqli.php');
     if(!empty($_POST)){
         
         // Erreurs possibles

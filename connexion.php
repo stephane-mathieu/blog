@@ -1,5 +1,6 @@
 <?php
-require('./DATABASE/connect-data-base.php');
+// require('./DATABASE/connect-data-base.php');
+require('./DATABASE/database-sqli.php');
     if(!empty($_POST) && !empty($_POST['login']) && !empty($_POST['password'])){
 
         $login = $_POST['login'];
