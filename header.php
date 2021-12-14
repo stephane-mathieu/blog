@@ -28,15 +28,13 @@ $result_article_tri = mysqli_fetch_all($sql_recup, MYSQLI_ASSOC);
             <li><a href="articles.php">Articles</a></li>
             <li>
                 <ul>
-                    <p>Catégories</p>
+                    <li>Catégories</li>
                     <?php foreach ($result_cat as $cat) { ?>
-                        <a href="articles.php?categorie=<?= $cat['nom'] ?>"><?= $cat['nom'] ?> </a>
-                        <?php
-                        ?>
+                        <li><a href="articles.php?categorie=<?= $cat['nom'] ?>"><?= $cat['nom'] ?></a></li>
+                        
+                    <?php } ?>  
                 </ul>
             </li>
-        <?php } ?>
-        </li>
 
         <!-- Si l'user n'est pas connecté -->
         <?php if (!isset($loogin)) { ?>
