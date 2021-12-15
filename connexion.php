@@ -1,5 +1,5 @@
 <?php
-// require('./DATABASE/connect-data-base.php');
+require('./DATABASE/connect-data-base.php');
 require('./DATABASE/database-sqli.php');
     if(!empty($_POST) && !empty($_POST['login']) && !empty($_POST['password'])){
 
@@ -51,7 +51,7 @@ require('./DATABASE/database-sqli.php');
     <link href="./style/styles.css" rel="stylesheet">
 </head>
 <body>
-   
+<?php require('header.php') ?>
     <main class="main main_form">
 
         <!-- Parcoure les potentielles erreurs -->

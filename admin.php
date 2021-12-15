@@ -1,5 +1,5 @@
 <?php
-    session_start();
+    
     require('./DATABASE/database-sqli.php');
     if(isset($_SESSION['admin'])){
         $req = "SELECT * FROM utilisateurs";
@@ -17,6 +17,7 @@
     <title>Document</title>
 </head>
 <body>
+<?php require('header.php') ?>
 <main>
   <table class="table table-success table-striped">
   <thead>
@@ -31,7 +32,9 @@
   <tbody>
     <?php
       if(isset($_SESSION['admin'])){
-    echo'<a href="add.php">ajouter un user</a>';
+    echo'<a href="add.php">ajouter un user</a>'
+    
+    ;
       }?>
   <?php foreach ($result as $st) {  ?>
                     <tr>
@@ -46,7 +49,7 @@
                     </tr>
                 <?php }; ?>
         </tbody>
-  </tbody>
+  
 </table>
 
 

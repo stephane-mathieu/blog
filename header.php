@@ -21,60 +21,76 @@ $result_article_tri = mysqli_fetch_all($sql_recup, MYSQLI_ASSOC);
 
 
 ?>
-<header class="menu">
-    <nav class="menuNav">
-        <ul>
-            <li><a href="index.php">Accueil</a></li>
-            <li><a href="articles.php">Articles</a></li>
-            <li>
-                <ul>
-                    <p>Catégories</p>
-                    <?php foreach ($result_cat as $cat) { ?>
-                        <a href="articles.php?categorie=<?= $cat['nom'] ?>"><?= $cat['nom'] ?> </a>
-                        <?php
-                        ?>
-                </ul>
-            </li>
-        <?php } ?>
-        </li>
+<!DOCTYPE html>
+<html lang = "en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/style.css">
+    
+</head>
+<header class = "menu">
+    <div class = "conteneur_nav" >
+        <nav class = "menuNav">
+            <ul>
+                <li><a href="index.php">Accueil</a></li>
+                <li><a href="articles.php">Articles</a></li>
+                    <li ><a href="index.php">Catégories
+                        <ul>
+                            <?php foreach ($result_cat as $cat) { ?>
+                                <li class = "dropdown"><a href="articles.php?categorie=<?= $cat['nom'] ?>"><?= $cat['nom'] ?></a></li>
+                                <?php
+                                ?>
+                            <?php } ?> 
+                        </ul>
+                </li>
+            
+            
 
-        <!-- Si l'user n'est pas connecté -->
-        <?php if (!isset($loogin)) { ?>
-            <li>
-                <a href="inscription.php">Inscription</a>
-            </li>
-            <li>
-                <a href="connexion.php">Connexion</a>
-            </li>
-        <?php } ?>
+            <!-- Si l'user n'est pas connecté -->
+            <?php if (!isset($loogin)) { ?>
+                <li>
+                    <a href="inscription.php">Inscription</a>
+                </li>
+                <li>
+                    <a href="connexion.php">Connexion</a>
+                </li>
+            <?php } ?>
 
+            <!-- SI admin ou modo -->
+            <?php
+            if (@$resultUser[0]["id_droits"] == "1337" || @$resultUser[0]["id_droits"] == "42") {
+            ?>
+                <li class="nav-item">
+                    <a href="creer-articles.php">Créer articles</a>
+                </li>
+            <?php }; ?>
+            <?php
+            if (@$resultUser[0]["id_droits"] == "1337") {
+            ?><li class="nav-item">
+                    <a href="admin.php">admin</a>
+                    <ul>
+                        <li><a href="admin-categorie.php">catégories</a></li>
+                        <li><a href="admin-article.php">articles</a></li>
+                    </ul>
+                </li>
+            <?php }; ?>
 
-        <!-- Si l'user est connecté -->
-        <?php if (isset($loogin)) { ?>
-            <li>
-                <a href="profil.php">Profil</a>
-            </li>
-            <li>
-                <form action="deconnexion.php" method="POST">
-                    <button name="deconnexion">Deconnexion</button>
-                </form>
-            </li>
-        <?php } ?>
+            <!-- Si l'user est connecté -->
+            <?php if (isset($loogin)) { ?>
+                <li>
+                    <a href="profil.php">Profil</a>
+                </li>
+                <li>
+                    <form action="deconnexion.php" method="POST">
+                        <button name="deconnexion">Deconnexion</button>
+                    </form>
+                </li>
+            <?php } ?>
 
-        <!-- SI admin ou modo -->
-        <?php
-        if (@$resultUser[0]["id_droits"] == "1337" || @$resultUser[0]["id_droits"] == "42") {
-        ?>
-            <li class="nav-item">
-                <a href="creer-articles.php">Créer articles</a>
-            </li>
-        <?php }; ?>
-        <?php
-        if (@$resultUser[0]["id_droits"] == "1337") {
-        ?><li class="nav-item">
-                <a href="admin.php">admin</a>
-            </li>
-        <?php }; ?>
-        </ul>
-    </nav>
+        
+            </ul>
+        </nav>
+</div>
 </header>

@@ -1,0 +1,39 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style: none;
+    
+}
+
+.conteneur_nav{
+    padding: 20px;
+}
+
+.menuNav{
+    list-style-type: none;
+    height: 80px;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    ul{
+        
+        display: flex;
+        justify-content: space-evenly;
+        
+    }
+    
+}
+.menuNav ul li ul  {
+    display:none;
+    }
+.menuNav ul li:hover ul {
+    display:block;
+    }
+
+.menunav li ul {
+    position:absolute;
+    }

@@ -57,6 +57,7 @@ $result1 = mysqli_fetch_all($sql_categori, MYSQLI_ASSOC);
 </head>
 
 <body>
+<?php require('header.php') ?>
     <main class="container">
         <div class="row">
             <section class="liste-article">

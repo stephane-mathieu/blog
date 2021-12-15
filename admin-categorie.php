@@ -15,6 +15,7 @@ $result = mysqli_fetch_all($query,MYSQLI_ASSOC);
     <title>Document</title>
 </head>
 <body>
+<?php require('header.php') ?>
 <main>
   <table class="table table-success table-striped">
   <thead>

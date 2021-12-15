@@ -92,6 +92,7 @@
     <link href="./style/styles.css" rel="stylesheet">
 </head>
 <body>
+<?php require('header.php') ?>
     <main class="main_form">
     
     <!-- Parcoure les potentielles erreurs -->

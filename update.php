@@ -3,7 +3,7 @@
 <?php
 // session_start();
 require('./DATABASE/database-sqli.php');
-session_start();
+// session_start();
 
 
 
@@ -86,6 +86,7 @@ $requete_confetch = mysqli_fetch_all($requete_con, MYSQLI_ASSOC);
     <title>Document</title>
 </head>
 <body class="profilBody">
+<?php require('header.php') ?>
     <main>
     <section class= formulaire>
 

@@ -1,0 +1,23 @@
+{
+  "name": "blog",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "sass": "sass -w scss:css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stephane-mathieu/blog.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/stephane-mathieu/blog/issues"
+  },
+  "homepage": "https://github.com/stephane-mathieu/blog#readme",
+  "dependencies": {
+    "sass": "^1.45.0"
+  }
+}

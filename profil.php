@@ -86,6 +86,7 @@ $requete_confetch = mysqli_fetch_all($requete_con, MYSQLI_ASSOC);
     <title>Document</title>
 </head>
 <body class="profilBody">
+<?php require('header.php') ?>
     <main>
     <section class= formulaire>
         <h2 class="sous-titre">Profil de <?php echo $recuper[0] ?> </h2>

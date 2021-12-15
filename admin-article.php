@@ -1,5 +1,5 @@
 <?php
-    session_start();
+    
     require('./DATABASE/database-sqli.php');
 
     if(isset($_SESSION['admin'])){
@@ -18,6 +18,7 @@
     <title>Document</title>
 </head>
 <body>
+<?php require('header.php') ?>
 <main>
   <table class="table table-success table-striped">
   <thead>

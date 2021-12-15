@@ -25,7 +25,7 @@ if(isset($_POST['submit'])){
     <link href="./style/styles.css" rel="stylesheet">
 </head>
 <body>
-
+<?php require('header.php') ?>
     <form action="" method="post" class="form">
 
         <div class="formSection formSection1">

@@ -1,6 +1,6 @@
 <?php
     require('./DATABASE/database-sqli.php');
-    session_start();
+    
     $test = $_GET['id'];
         $req = "SELECT * FROM utilisateurs where id = '$test'";
         $query = mysqli_query($conn, $req);
@@ -19,6 +19,7 @@
     <title>Document</title>
 </head>
 <body>
+<?php require('header.php') ?>
 <main>
   <table class="table table-success table-striped">
   <thead>

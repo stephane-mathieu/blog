@@ -34,7 +34,7 @@ if(isset($_POST['submit'])){
     <title>Document</title>
 </head>
 <body>
-
+<?php require 'header.php'?>
 <table class="table-article">
      <thead>
          <th>Article</th>
