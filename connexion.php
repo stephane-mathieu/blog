@@ -45,13 +45,18 @@ require('./DATABASE/connect-data-base.php');
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Go Magritte || Log in</title>
+    <title>Connexion</title>
     <link rel="icon" type="image/x-icon" href="./assets/images/favicon.ico">
     <link href="./style/styles.css" rel="stylesheet">
+    <link href="./Style/connexion.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
 </head>
 <body>
-   
-    <main class="main main_form">
+   <header>
+       <?php include('header.php');?>
+   </header>
+    <main class="main">
 
         <!-- Parcoure les potentielles erreurs -->
     <?php if(!empty($errors)): ?>
@@ -65,26 +70,29 @@ require('./DATABASE/connect-data-base.php');
                 </ul>
             </div>
     <?php endif; ?>
+    <div class="container">
+        <div class="row gx-0">
+            <div class="col-md-7">
+                <div class="card border-0">
+                    <form class="box"action="" method="POST" class="form">
 
-        <form action="" method="post" class="form">
+                            <h1 class="formTittle">Login</h1>
+                            <p class="text-muted"> Please enter your login and password!</p>
 
-            <h1 class="formTittle">Log in</h1>
-
-            <div class="formSection formSection1">
-                <label for="login"></label>
-                <input type="text" name="login" placeholder="Your login" class="formText">
+                                <label for="login"></label>
+                                <input type="text" name="login" placeholder="Your login" class="formText">
+                                <label for="password"></label>
+                                <input type="password" name="password" placeholder="Your password" class="formText">
+                                <input type="submit" name="" value="Login" href="#">
+                     </form>
+                </div>
             </div>
 
-            <div class="formSection formSection2">
-                <label for="password"></label>
-                <input type="password" name="password" placeholder="Your password" class="formText">
-            </div>
-            
-            <div class="formSection  formSection3">
-                <button type="submit" name="submit" class="formButton">Submit</button>
-            </div>
-        </form>
+        </div>
+
+    </div>
     </main>
- 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
 </body>
 </html>

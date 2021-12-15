@@ -49,7 +49,7 @@ if(isset($_POST['submit'])){
                 if($log['id_article'] == $test){
                 ?>
                 <td><?= $log['commentaire']?></td>
-                <td><?= $log['login']?></td>
+                <td><?= $log['login']."<br>"?></td>
                 <?php
                 }
             }

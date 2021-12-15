@@ -59,7 +59,7 @@
 
             session_start();
             $_SESSION['flash']['sucess'] = "Your account has been create, you can now log in. ";
-            header('location:index.php');
+            header('location:connexion.php');
         }
     }
     
@@ -74,8 +74,14 @@
     <title>Go Magritte || Sign Up</title>
     <link rel="icon" type="image/x-icon" href="./assets/images/favicon.ico">
     <link href="./style/styles.css" rel="stylesheet">
+    <link href="./Style/connexion.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
 </head>
 <body>
+    <header>
+    <?php include('header.php');?>
+    </header>
     <main class="main_form">
     
     <!-- Parcoure les potentielles erreurs -->
@@ -91,33 +97,33 @@
             </div>
     <?php endif; ?>
 
-    <form action="" method="post" class="form">
-        
-        <h1 class="formTittle">Sign up</h1>
+    </form> 
+    <div class="container">
+        <div class="row gx-0">
+            <div class="col-md-7">
+                <div class="card border-0">
+                    <form class="box"action="" method="POST" class="form">
 
-        <div class="formSection formSection1">
-            <label for="login"></label>
-            <input type="text" name="login" placeholder="Your login" class="formText">
-        </div>
-        <div class="formSection formSection1">
-            <label for="login"></label>
-            <input type="text" name="email" placeholder="Your email" class="formText">
+                            <h1 class="formTittle">Sign Up</h1>
+                            <p class="text-muted"> Please enter your login and password!</p>
+
+                                <label for="login"></label>
+                                <input type="text" name="login" placeholder="Your login" class="formText">
+                                <label for="login"></label>
+                                <input type="text" name="email" placeholder="Your email" class="formText">
+                                <label for="password"></label>
+                                <input type="password" name="password" placeholder="Your password" class="formText">
+                                <label for="password"></label>
+                                <input type="password" name="password_confirm" placeholder="Confirm your password" class="formText">
+                                <input type="submit" name="" value="Login" href="#">
+                     </form>
+                </div>
+            </div>
+
         </div>
 
-
-        <div class="formSection formSection2">
-            <label for="password"></label>
-            <input type="password" name="password" placeholder="Your password" class="formText">
-        </div>
-        
-        <div class="formSection  formSection3">
-            <label for="password_confirm"></label>
-            <input type="password" name="password_confirm" placeholder="Confirm your password" class="formText">
-        </div>
-        <div class="formSection formSection4">
-            <button type="submit" name="submit" class="formButton">Submit</button>
-        </div>
-    </form>
+    </div>
     </main>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </body>
 </html>

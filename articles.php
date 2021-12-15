@@ -35,7 +35,7 @@ $sql_recup = mysqli_query($conn, "SELECT categories.*, articles.id_categorie FRO
 $result_article_tri = mysqli_fetch_all($sql_recup, MYSQLI_ASSOC);
 
 
-$oi = $_GET['categorie'];
+@$oi = $_GET['categorie'];
 $sql_categori = mysqli_query($conn, "SELECT * FROM `categories` WHERE `nom` = '$oi'");
 $result1 = mysqli_fetch_all($sql_categori, MYSQLI_ASSOC);
 
@@ -57,6 +57,9 @@ $result1 = mysqli_fetch_all($sql_categori, MYSQLI_ASSOC);
 </head>
 
 <body>
+    <header>
+        <?php include('header.php');?>
+    </header>
     <main class="container">
         <div class="row">
             <section class="liste-article">
