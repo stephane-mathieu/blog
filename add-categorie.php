@@ -20,22 +20,25 @@ if(isset($_POST['submit'])){
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Go Magritte || Sign Up</title>
-    <link rel="icon" type="image/x-icon" href="./assets/images/favicon.ico">
-    <link href="./style/styles.css" rel="stylesheet">
+    <title>Admin</title>
+    <link rel="stylesheet" href="./css/style.css">
+
 </head>
 <body>
-<?php require('header.php') ?>
-    <form action="" method="post" class="form">
 
-        <div class="formSection formSection1">
-            <label for="categorie"></label>
-            <input type="text" name="categorie" placeholder="Your categorie" class="formText">
-        </div>
-        <div class="formSection formSection4">
-            <button type="submit" name="submit" class="formButton">Submit</button>
-        </div>
-    </form>
+<?php require('header.php') ?>
+    <main class="mainForm">
+
+        <form action="" method="post" class="form">
+
+            <div class="formSection ">
+                <label for="categorie"></label>
+                <input type="text" name="categorie" placeholder="Your categorie" class="formText">
+            </div>
+            <div class="formSection formSection4">
+                <button type="submit" name="submit" class="formButton">Submit</button>
+            </div>
+        </form>
     </main>
 </body>
 </html>

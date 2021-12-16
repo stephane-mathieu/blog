@@ -35,7 +35,7 @@ $sql_recup = mysqli_query($conn, "SELECT categories.*, articles.id_categorie FRO
 $result_article_tri = mysqli_fetch_all($sql_recup, MYSQLI_ASSOC);
 
 
-$oi = $_GET['categorie'];
+@$oi = $_GET['categorie'];
 $sql_categori = mysqli_query($conn, "SELECT * FROM `categories` WHERE `nom` = '$oi'");
 $result1 = mysqli_fetch_all($sql_categori, MYSQLI_ASSOC);
 
@@ -61,28 +61,28 @@ $result1 = mysqli_fetch_all($sql_categori, MYSQLI_ASSOC);
     <main class="container">
         <div class="row">
             <section class="liste-article">
-                <h1>Liste des articles</h1>
+                <h1>Articles</h1>
                 <form action="" method="GET">
                     <select name="categorie">
                         <?php foreach ($result_cat as $categorie) { ?>
                             <option value="<?php echo $categorie['nom']; ?> "><?php echo $categorie['nom']; ?> </option>
                         <?php } ?>
                     </select>
-                    <button name="submit">Valider</button>
+                    <button name="submit" class="formButton">Valider</button>
                 </form>
                 <?php
                 //savoir sur qu'elle page nous sommes 
                 for ($i = 1; $i <= $nbr_page; $i++) {
                     if ($page != $i)
-                        echo "<a href='?page=$i'>$i</a>&nbsp";
+                        echo "<a class='page' href='?page=$i'>$i</a>&nbsp";
                     else
-                        echo "<a>$i</a>&nbsp";
+                        echo "<a class='page'>$i</a>&nbsp";
                 }
                 ?>
                 <table class="table-article">
                     <thead>
-                        <th>ID</th>
                         <th>Titre</th>
+                        <th>Poème</th>
                         <th>Date</th>
                     </thead>
                     <tbody>
@@ -101,7 +101,7 @@ $result1 = mysqli_fetch_all($sql_categori, MYSQLI_ASSOC);
                             foreach ($result as $cat) {
                         ?>
                                 <tr>
-                                    <td><?= $cat['id_categorie'] ?></td>
+                                    <td><?= $cat['titre'] ?></td>
                                     <td><?= $cat['article'] ?></td>
                                     <td><?= $cat['date'] ?></td>
                                     <td> <?php echo '<a href="article.php?id=' . $cat['id'] . '">view article</a>'; ?></td>
@@ -113,7 +113,7 @@ $result1 = mysqli_fetch_all($sql_categori, MYSQLI_ASSOC);
                             foreach ($articles as $article) {
                             ?>
                                 <tr>
-                                    <td><?= $article['id'] ?></td>
+                                    <td class="articleTitre"><?= $article['titre'] ?></td>
                                     <td><?= $article['article'] ?></td>
                                     <td><?= $article['date'] ?></td>
                                     <td> <?php echo '<a href="article.php?id=' . $article['id'] . '">view article</a>'; ?></td>
@@ -127,6 +127,9 @@ $result1 = mysqli_fetch_all($sql_categori, MYSQLI_ASSOC);
             </section>
         </div>
     </main>
+    <section class="footer">
+            <?php require('footer.php') ?>  
+        </section>
 </body>
 
 </html>

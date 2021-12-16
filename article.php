@@ -31,10 +31,11 @@ if(isset($_POST['submit'])){
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Article</title>
 </head>
 <body>
 <?php require 'header.php'?>
+<main class="test">
 <table class="table-article">
      <thead>
          <th>Article</th>
@@ -46,24 +47,21 @@ if(isset($_POST['submit'])){
              <td><?= $result[0]['article'] ?></td>
              <?php
             foreach($resultlog as $log){
-                if($log['id_article'] == $test){
-                ?>
-                <td><?= $log['commentaire']?></td>
-                <td><?= $log['login']?></td>
-                <?php
-                }
+                if($log['id_article'] == $test){?>
+                    <td class="com"><?= $log['commentaire']?></td>
+                    <td><?= $log['login']?></td><br>
+                <?php }
             }
             ?> 
-
         </tr>
      </tbody>
-<?php
-?>
-<div class="container col-5 position-absolute top-50 start-50 translate-middle">
+</table>
+<div class="container">
     <form  class ="row g-3"action="" method="POST">
-    <textarea  name="commentaire"></textarea>
-    <button class="btn btn-primary"  name = "submit" type="submit">Valider</button>
+    <textarea class="formText" name="commentaire"></textarea>
+    <button class="formButton btnArticle"  name = "submit" type="submit">Valider</button>
     </form>
 <div>
+</main>
 </body>
 </html>

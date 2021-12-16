@@ -61,23 +61,27 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" >
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Créer Article</title>
+    <link rel="stylesheet" href="./css/style.css">
+
+    <title>Article</title>
 </head>
 <body>
     <?php require('header.php') ?>
-
-    <form action="" method="GET" >
-      
-        <textarea name="createArticle" cols="30" rows="10"></textarea>
-
-        <select name="categorie">
-                        <?php foreach ($resultCategories as $categorie) { ?>
-                            <option value="<?php echo $categorie['nom']; ?> "><?php echo $categorie['nom']; ?> </option>
-                        <?php } ?>
-                    
-        </select>
-
-        <button name="submit">Submit</button>
-    </form>
+    <main class="mainForm">
+        <form action="" method="GET" class="form" >
+            <div class="formSection">
+            <textarea class="formText" name="createArticle" cols="30" rows="10"></textarea>
+            </div>
+            <div class="formSection">
+            <select name="categorie">
+                            <?php foreach ($resultCategories as $categorie) { ?>
+                                <option value="<?php echo $categorie['nom']; ?> "><?php echo $categorie['nom']; ?> </option>
+                            <?php } ?>
+                        
+            </select>
+            </div>
+            <button name="submit" class="formButton">Submit</button>
+        </form>
+    </main>
 </body>
 </html>

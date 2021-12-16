@@ -13,7 +13,7 @@ $result = mysqli_fetch_all($query,MYSQLI_ASSOC);
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Document</title>
+    <title>Categorie</title>
 </head>
 <body>
 <?php require('header.php') ?>

@@ -69,7 +69,7 @@ $result_article_tri = mysqli_fetch_all($sql_recup, MYSQLI_ASSOC);
             <?php
             if (@$resultUser[0]["id_droits"] == "1337") {
             ?><li class="nav-item">
-                    <a href="admin.php">admin</a>
+                    <a href="admin.php">Admin</a>
                     <ul>
                         <li><a href="admin-categorie.php">catégories</a></li>
                         <li><a href="admin-article.php">articles</a></li>
@@ -84,7 +84,7 @@ $result_article_tri = mysqli_fetch_all($sql_recup, MYSQLI_ASSOC);
                 </li>
                 <li>
                     <form action="deconnexion.php" method="POST">
-                        <button name="deconnexion">Deconnexion</button>
+                        <button name="deconnexion" class="formButton btnNav">Deconnexion</button>
                     </form>
                 </li>
             <?php } ?>

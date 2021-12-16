@@ -83,41 +83,41 @@ $requete_confetch = mysqli_fetch_all($requete_con, MYSQLI_ASSOC);
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css" type="text/css">
-    <title>Document</title>
+    <title>Profil</title>
 </head>
 <body class="profilBody">
 <?php require('header.php') ?>
-    <main>
-    <section class= formulaire>
+    <main class="mainForm">
+    
 
         <h2 class="sous-titre">Profil de <?php echo $result['login'] ?> </h2>
         <form action="" method="post" class="form">
-                <div class="form-group">
+                <div class="formSection">
                     <label for="login">Nouveau login:</label><br>
-                    <input type="login" name="login" class="form-control" placeholder="Login"  value ="<?php echo $result['login'] ?>" autocomplete="off">
+                    <input type="text" name="login" class="formText" placeholder="Login"  value ="<?php echo $result['login'] ?>" autocomplete="off">
                 </div>
-                <div class="form-group">
-                    <button type="submit" name= "validerlog" class="btn btn-primary btn-block">Valider</button>
+                <div class="formSection">
+                    <button type="submit" name= "validerlog" class="formButton">Valider</button>
                 </div>  
-                <div class="form-group">
+                <div class="formSection">
                     <label for="login">Nouveau password:</label><br>
-                    <input type="password" name="password" class="form-control2" placeholder="Mot de passe"   autocomplete="off">
+                    <input type="password" name="password" class="formText" placeholder="Mot de passe"   autocomplete="off">
                 </div>
-                <div class="form-group">
-                    <button type="submit" name= "validerpass" class="btn">Valider</button>
+                <div class="formSection">
+                    <button type="submit" name= "validerpass" class="formButton">Valider</button>
                 </div>
                 <select name="droits" id="droits">
                     <option value="utilisateur">utilisateur</option>
                     <option value="moderateur">modérateur</option>
                     <option value="administrateur">administrateur</option>
                 </select>
-                <div class="form-group">
-                    <button type="submit" name= "validerdroits" class="btn">Valider</button>
+                <div class="formSection">
+                    <button type="submit" name= "validerdroits" class="formButton">Valider</button>
                 </div>
                 
         </form>
         
-        </section>
+        
     </main>
 </body>
 </html>
