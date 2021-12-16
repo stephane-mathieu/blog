@@ -1,7 +1,6 @@
 <?php
 require('./DATABASE/connect-data-base.php');
-$bdd = mysqli_connect('localhost', 'root', '', 'blog');
-mysqli_set_charset($bdd, 'utf-8');
+require('./DATABASE/database-sqli.php');
     if(!empty($_POST) && !empty($_POST['login']) && !empty($_POST['password'])){
 
         $login = $_POST['login'];
@@ -21,7 +20,11 @@ mysqli_set_charset($bdd, 'utf-8');
             if($user[0]['id_droits'] == 1337){
                 session_start();
                 $_SESSION['admin'] = $user;
-                header('Location: admin.php');
+                $_SESSION['user'] = $user['0']['login'];
+                $_SESSION['userPass'] = $user['0']['password'];
+                $_SESSION['userId'] = $user['0']['id'];
+                $_SESSION['flash']['error'] = "You are logged now. ";
+                header('Location: index.php');
             }else{
                 session_start();
                 $_SESSION['user'] = $user['0']['login'];
@@ -43,13 +46,13 @@ mysqli_set_charset($bdd, 'utf-8');
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Go Magritte || Log in</title>
+    <title>Log in</title>
     <link rel="icon" type="image/x-icon" href="./assets/images/favicon.ico">
-    <link href="./style/styles.css" rel="stylesheet">
+    <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
-   
-    <main class="main main_form">
+<?php require('header.php') ?>
+    <main class="mainForm ">
 
         <!-- Parcoure les potentielles erreurs -->
     <?php if(!empty($errors)): ?>

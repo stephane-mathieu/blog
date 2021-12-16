@@ -2,7 +2,7 @@
 session_start();
 //connexion a la bdd
 require('./DATABASE/connect-data-base.php');
-$bdd = mysqli_connect("localhost","root","","blog");
+$bdd = mysqli_connect("localhost","root","root","blog");
 //
 
 //recup de la session conn
@@ -42,7 +42,6 @@ $requete_confetch = mysqli_fetch_all($requete_con, MYSQLI_ASSOC);
         if(!empty($_POST['login'])){
 
             if(count($requete_confetch) == 0){
-                var_dump(($_POST['login']));
                 $newlog = $_POST['login'];
 
                 $update = "UPDATE `utilisateurs` SET `login`= '$newlog' WHERE `id` = '$id'";
@@ -62,9 +61,6 @@ $requete_confetch = mysqli_fetch_all($requete_con, MYSQLI_ASSOC);
         }
 
             if(!empty($_POST['password'])){
-               var_dump(($_POST['password']));
-                // $password = $recupsw[0];
-    
                 $update2 = $pdo->prepare("UPDATE `utilisateurs` SET `password`='$newpassWrd' WHERE `login` = '$sessLogin'");
                 $update2->setFetchMode(PDO::FETCH_ASSOC);
                 $update2->execute();
@@ -86,33 +82,27 @@ $requete_confetch = mysqli_fetch_all($requete_con, MYSQLI_ASSOC);
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css" type="text/css">
-    <title>Document</title>
+    <title>Profil</title>
 </head>
 <body class="profilBody">
-    <main>
-    <section class= formulaire>
+<?php require('header.php') ?>
+    <main class="mainForm">
+    
         <h2 class="sous-titre">Profil de <?php echo $recuper[0] ?> </h2>
         <form action="profil.php" method="post" class="form">
-                <div class="form-group">
+                <div class="formSection">
                     <label for="login">Nouveau login:</label><br>
-                    <input type="login" name="login" class="form-control" placeholder="Login"  value ="<?php echo $recuper[0]; ?>" autocomplete="off">
+                    <input type="login" name="login" class="formText" placeholder="Login"  value ="<?php echo $recuper[0]; ?>" autocomplete="off">
                 </div>
-                <div class="form-group">
+                <div class="formSection">
                     <label for="login">Nouveau password:</label><br>
-                    <input type="password" name="password" class="form-control2" placeholder="Mot de passe"   autocomplete="off">
+                    <input type="password" name="password" class="formText" placeholder="Mot de passe"   autocomplete="off">
                 </div>
-                <!-- <div class="form-group">
-                    <label for="login">Confirmer le password:</label><br>
-                    <input type="passwordconfirm" name="passwordconfirm" class="form-control" placeholder="Confimer le nouveau mot de passe"   autocomplete="off">
-                </div> -->
-                <!-- <div class="form-group">
-                    <button type="submit" name= "validerpass" class="btn">Valider</button>
-                </div> -->
-                <div class="form-group">
-                    <button type="submit" name= "validerlog" class="btn btn-primary btn-block">Valider</button>
+                <div class="formSection">
+                    <button type="submit" name= "validerlog" class="formButton">Valider</button>
                 </div>
         </form>
-        </section>
+        
     </main>
 </body>
 </html>
