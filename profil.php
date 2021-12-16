@@ -70,7 +70,7 @@ $requete_confetch = mysqli_fetch_all($requete_con, MYSQLI_ASSOC);
 
         }
    
-
+ 
 
 
 ?>

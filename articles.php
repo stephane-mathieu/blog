@@ -84,7 +84,7 @@ $result1 = mysqli_fetch_all($sql_categori, MYSQLI_ASSOC);
                         <th>Titre</th>
                         <th>Poème</th>
                         <th>Date</th>
-                    </thead>
+                    </thead> 
                     <tbody>
                         <?php
                         //tri par catégorie des articles

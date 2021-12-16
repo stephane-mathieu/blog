@@ -10,7 +10,7 @@
      $query = mysqli_query($conn, "SELECT utilisateurs.login, commentaires.commentaire, commentaires.date, commentaires.id_article FROM utilisateurs INNER JOIN commentaires WHERE utilisateurs.id = commentaires.id_utilisateur");
      $resultlog= mysqli_fetch_all($query,MYSQLI_ASSOC);
 
-
+ 
 
 if(isset($_POST['submit'])){
     $DateAndTime = date('Y-m-d h:i:s', time());

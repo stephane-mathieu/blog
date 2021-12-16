@@ -6,4 +6,4 @@
             <li><a href="https://github.com/stephane-mathieu/blog" target="_blank">Git</a></li>
         </ul>
     </nav>
-</footer>
+</footer> 

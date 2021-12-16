@@ -6,7 +6,7 @@ require('./DATABASE/database-sqli.php');
         $login = $_POST['login'];
         $password = $_POST['password'];
         $errors = array();
-
+ 
         // Requete
         // $query = mysqli_query($bdd, "SELECT * FROM `utilisateurs` WHERE `login` = '$login'");
         // $user = mysqli_fetch_all($query, MYSQLI_ASSOC);

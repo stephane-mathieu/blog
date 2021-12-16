@@ -6,7 +6,7 @@ $bdd = mysqli_connect("localhost","root","root","blog");
 
 $sql_affiche_article = mysqli_query($bdd, "SELECT * FROM `articles` ORDER BY `date` DESC LIMIT 3");
 $affiche_article = mysqli_fetch_all($sql_affiche_article, MYSQLI_ASSOC);
-
+ 
 ?>
 <!DOCTYPE html>
 <html lang="en">

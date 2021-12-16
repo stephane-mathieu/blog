@@ -45,7 +45,7 @@ $result_article_tri = mysqli_fetch_all($sql_recup, MYSQLI_ASSOC);
                             <?php } ?> 
                         </ul>
                 </li>
-            
+             
             
 
             <!-- Si l'user n'est pas connecté -->

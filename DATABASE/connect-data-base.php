@@ -1,6 +1,6 @@
 <?php
 
-$user = 'root';
+$user = 'root'; 
 $pass = 'root';
 
 try{

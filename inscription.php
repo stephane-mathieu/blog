@@ -79,7 +79,7 @@
 <body>
 <?php require('header.php') ?>
     <main class="mainForm">
-    
+     
     <!-- Parcoure les potentielles erreurs -->
     <?php if(!empty($errors)): ?>
             <div class="errors">

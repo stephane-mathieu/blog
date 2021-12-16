@@ -7,7 +7,7 @@
         $result = mysqli_fetch_all($query,MYSQLI_ASSOC);
     }
 ?>
-
+ 
 
 <!DOCTYPE html>
 <html lang="en">
