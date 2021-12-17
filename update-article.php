@@ -48,24 +48,35 @@ if(isset($_POST['submit'])){
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css" type="text/css">
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
     <title>Article</title>
 </head>
 <body>
-    <main>
-        <div class="container col-5 position-absolute top-50 start-50 translate-middle">
-            <form  action="" method="POST">
-                <textarea  name = "article"></textarea>
-                <select name="categorie">
-                        <?php foreach ($resultCategories as $categorie) { ?>
-                            <option value="<?php echo $categorie['nom']; ?> "><?php echo $categorie['nom']; ?> </option>
-                        <?php } ?>
-                    
-                 </select>
-                <input type="datetime-local" id="meeting-time"
-                        name="date-time" value="<?php $DateAndTime ?>"
-                        min="<?php $DateAndTime ?>" max="2030-01-14T00:00">
-                <button class="btn btn-primary"  name = "submit" type="submit">Valider</button>
+<?php require('header.php') ?>
+<main class="mainForm">
+            <form class="form" action="" method="POST">
+                <div class="formSection">
+                    <textarea class="formText" name = "article"></textarea>
+                </div>
+                <div class="formSection">
+                    <select name="categorie">
+                            <?php foreach ($resultCategories as $categorie) { ?>
+                                <option value="<?php echo $categorie['nom']; ?> "><?php echo $categorie['nom']; ?> </option>
+                            <?php } ?>
+                        
+                    </select>
+                </div>
+
+                <div class="formSection">
+
+                    <input type="datetime-local" id="meeting-time"
+                            name="date-time" value="<?php $DateAndTime ?>"
+                            min="<?php $DateAndTime ?>" max="2030-01-14T00:00">
+                </div>
+                <div class="formSection">
+
+                    <button class="formButton"  name = "submit" type="submit">Valider</button>
+                </div>
             </form>
         <div>
     </main>

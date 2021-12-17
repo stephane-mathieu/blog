@@ -1,6 +1,6 @@
 <?php
 //connexion à la base
-$bdd = mysqli_connect("localhost","root","root","blog");
+$bdd = mysqli_connect("localhost","root","","blog");
 
 //requete pour recuperer les articles et les afficher par 3
 

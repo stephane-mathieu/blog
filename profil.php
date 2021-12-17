@@ -2,7 +2,7 @@
 session_start();
 //connexion a la bdd
 require('./DATABASE/connect-data-base.php');
-$bdd = mysqli_connect("localhost","root","root","blog");
+$bdd = mysqli_connect("localhost","root","","blog");
 //
 
 //recup de la session conn
