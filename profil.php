@@ -2,7 +2,7 @@
 session_start();
 //connexion a la bdd
 require('./DATABASE/connect-data-base.php');
-$bdd = mysqli_connect("localhost","root","root","blog");
+
 //
 
 //recup de la session conn
@@ -46,7 +46,7 @@ $requete_confetch = mysqli_fetch_all($requete_con, MYSQLI_ASSOC);
                 $newlog = $_POST['login'];
 
                 $update = "UPDATE `utilisateurs` SET `login`= '$newlog' WHERE `id` = '$id'";
-                $update_new = mysqli_query($bdd, $update);
+                $update_new = mysqli_query($conn, $update);
     
                 if(isset($update_new)) {
     

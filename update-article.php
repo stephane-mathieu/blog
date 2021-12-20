@@ -8,7 +8,7 @@ session_start();
 
 $test = $_GET['id'];
 
-$oi = $_POST['categorie'];
+$page_categorie = $_POST['categorie'];
 $article = $_POST['article'];
 $new_date = $_POST['date-time'];
 
@@ -18,7 +18,7 @@ $DateAndTime = date('Y-m-d h:i:s', time());
 
 
 
-$sql_categori = mysqli_query($conn, "SELECT * FROM `categories` WHERE `nom` = '$oi'");
+$sql_categori = mysqli_query($conn, "SELECT * FROM `categories` WHERE `nom` = '$page_categorie'");
 $result1 = mysqli_fetch_all($sql_categori, MYSQLI_ASSOC);
 $id_categorie = $result1[0]['id'];
 

@@ -27,17 +27,40 @@ if (count($articles) == 0) {
     header("location: articles.php");
 }
 
-//requete pour afficher les categories dans le selecteur html
-$sql = mysqli_query($conn, "SELECT categories.* FROM categories ");
-$result_cat = mysqli_fetch_all($sql, MYSQLI_ASSOC);
+@$page_categorie = $_GET['categorie'];
 
-$sql_recup = mysqli_query($conn, "SELECT categories.*, articles.id_categorie FROM categories INNER JOIN articles WHERE categories.id = articles.id_categorie;");
-$result_article_tri = mysqli_fetch_all($sql_recup, MYSQLI_ASSOC);
+/* if (isset($page_categorie)) { */
+    //requete pour afficher les categories dans le selecteur html
+
+    echo $page_categorie;
+    $sql = mysqli_query($conn, "SELECT categories.* FROM categories ");
+    $result_cat = mysqli_fetch_all($sql, MYSQLI_ASSOC);
+
+  /*   $sql_recup = mysqli_query($conn, "SELECT categories.*, articles.id_categorie FROM categories INNER JOIN articles WHERE categories.id = articles.id_categorie;");
+    $result_article_tri = mysqli_fetch_all($sql_recup, MYSQLI_ASSOC); */
 
 
-@$oi = $_GET['categorie'];
-$sql_categori = mysqli_query($conn, "SELECT * FROM `categories` WHERE `nom` = '$oi'");
-$result1 = mysqli_fetch_all($sql_categori, MYSQLI_ASSOC);
+
+    /* $sql_categori = mysqli_query($conn, "SELECT articles.id, articles.titre, articles.date,  articles.id_utilisateur, articles.id_categorie, categories.nom 
+FROM articles 
+INNER JOIN categories ON categories.id = articles.id_categorie 
+WHERE categories.nom = '$page_categorie'"); */
+
+
+
+
+
+
+    /* $result1 = mysqli_fetch_all($sql_categori, MYSQLI_ASSOC); */
+
+    /* echo "<pre>";
+var_dump($result1);
+echo "</pre>"; */
+/* } */
+
+
+
+
 
 
 
@@ -54,82 +77,106 @@ $result1 = mysqli_fetch_all($sql_categori, MYSQLI_ASSOC);
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Articles</title>
+    <link rel="stylesheet" href="./css/style.css">
+
 </head>
 
 <body>
-<?php require('header.php') ?>
+    <?php require('header.php') ?>
     <main class="container">
-        <div class="row">
-            <section class="liste-article">
-                <h1>Articles</h1>
-                <form action="" method="GET">
-                    <select name="categorie">
-                        <?php foreach ($result_cat as $categorie) { ?>
-                            <option value="<?php echo $categorie['nom']; ?> "><?php echo $categorie['nom']; ?> </option>
-                        <?php } ?>
-                    </select>
-                    <button name="submit" class="formButton">Valider</button>
-                </form>
+
+        <section class="categorieHidden">
+
+
+            <form action="" method="GET">
+                <select name="categorie">
+                    <?php foreach ($result_cat as $categorie) { ?>
+                        <option value="<?php echo $categorie['nom']; ?> "><?php echo $categorie['nom']; ?> </option>
+                    <?php } ?>
+                </select>
+                <button name="submit" class="formButton">Valider</button>
+            </form>
+            <div class="pagination">
                 <?php
                 //savoir sur qu'elle page nous sommes 
-                for ($i = 1; $i <= $nbr_page; $i++) {
-                    if ($page != $i)
-                        echo "<a class='page' href='?page=$i'>$i</a>&nbsp";
-                    else
-                        echo "<a class='page'>$i</a>&nbsp";
+                if (isset($_GET['categorie'])) {
+
+
+
+
+
+                    for ($i = 1; $i <= $nbr_page_categorie; $i++) {
+                        if ($page != $i)
+                            echo "<a class='page' href='?page=$i&categorie=$page_categorie'>$i</a>&nbsp";
+                        else
+                            echo "<a class='page'>$i</a>&nbsp";
+                    }
+                } else {
+                    for ($i = 1; $i <= $nbr_page; $i++) {
+                        if ($page != $i)
+                            echo "<a class='page' href='?page=$i'>$i</a>&nbsp";
+                        else
+                            echo "<a class='page'>$i</a>&nbsp";
+                    }
                 }
+
+
+
                 ?>
-                <table class="table-article">
-                    <thead>
-                        <th>Titre</th>
-                        <th>Poème</th>
-                        <th>Date</th>
-                    </thead>
-                    <tbody>
-                        <?php
-                        //tri par catégorie des articles
+            </div>
+        </section>
+        <section class="conteneur_accueil containerOver">
 
-                        if (isset($_GET['categorie'])) {
 
-                            if (($_GET['categorie']) == $oi) {
-                                $idcate = $result1[0]['id'];
-                                $sql_categories = mysqli_query($conn, "SELECT * FROM `articles` WHERE `id_categorie` = '$idcate'");
-                                $result = mysqli_fetch_all($sql_categories, MYSQLI_ASSOC);
-                            }
+            <?php
+            //tri par catégorie des articles
 
-                            // affichage des articles par catégorie
-                            foreach ($result as $cat) {
-                        ?>
-                                <tr>
-                                    <td><?= $cat['titre'] ?></td>
-                                    <td><?= $cat['article'] ?></td>
-                                    <td><?= $cat['date'] ?></td>
-                                    <td> <?php echo '<a href="article.php?id=' . $cat['id'] . '">view article</a>'; ?></td>
-                                </tr>
-                            <?php
-                            }
-                        } else {
-                            // On boucle sur tous les articles
-                            foreach ($articles as $article) {
-                            ?>
-                                <tr>
-                                    <td class="articleTitre"><?= $article['titre'] ?></td>
-                                    <td><?= $article['article'] ?></td>
-                                    <td><?= $article['date'] ?></td>
-                                    <td> <?php echo '<a href="article.php?id=' . $article['id'] . '">view article</a>'; ?></td>
-                                </tr>
-                        <?php
-                            }
-                        }
-                        ?>
-                    </tbody>
-                </table>
-            </section>
-        </div>
+            if (isset($_GET['categorie'])) {
+
+                if (($_GET['categorie']) == $page_categorie) {
+
+                    $sql_categories = mysqli_query($conn, "SELECT articles.id, articles.titre, articles.article, articles.date,  articles.id_utilisateur, articles.id_categorie, categories.nom 
+                    FROM articles 
+                    INNER JOIN categories ON categories.id = articles.id_categorie 
+                    WHERE categories.nom = '$page_categorie'");
+
+                    $result = mysqli_fetch_all($sql_categories, MYSQLI_ASSOC);
+                }
+
+                // affichage des articles par catégorie
+                foreach ($result as $cat) {
+            ?>
+
+                    <div class="articleTitre"><?= $cat['titre'] ?></div>
+                    <div><?= $cat['article'] ?></div>
+                    <div><?= $cat['date'] ?></div>
+                    <div><?php echo '<a href="article.php?id=' . $cat['id'] . '">view article</a>'; ?></div>
+
+
+                <?php
+                }
+            } else {
+                // On boucle sur tous les articles
+                foreach ($articles as $article) {
+                ?>
+
+                    <div class="articleTitre"><?= $article['titre'] ?></div>
+                    <div><?= $article['article'] ?></div>
+                    <div><?= $article['date'] ?></div>
+                    <div><?php echo '<a href="article.php?id=' . $article['id'] . '">view article</a>'; ?></div>
+
+            <?php
+                }
+            }
+            ?>
+
+        </section>
+
+
     </main>
     <section class="footer">
-            <?php require('footer.php') ?>  
-        </section>
+        <?php require('footer.php') ?>
+    </section>
 </body>
 
 </html>

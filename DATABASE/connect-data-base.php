@@ -2,6 +2,8 @@
 
 $user = 'root';
 $pass = 'root';
+// $user = 'root';
+// $pass = '';
 
 try{
     $pdo = new PDO('mysql:host=localhost;dbname=blog',$user,$pass);

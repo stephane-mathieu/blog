@@ -21,15 +21,6 @@ $result_article_tri = mysqli_fetch_all($sql_recup, MYSQLI_ASSOC);
 
 
 ?>
-<!DOCTYPE html>
-<html lang = "en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./css/style.css">
-    
-</head>
 <header class = "menu">
     <div class = "conteneur_nav" >
         <nav class = "menuNav">
