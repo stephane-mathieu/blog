@@ -2,7 +2,6 @@
 session_start();
 //connexion a la bdd
 require('./DATABASE/connect-data-base.php');
-
 //
 
 //recup de la session conn
