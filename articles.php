@@ -32,7 +32,7 @@ if (count($articles) == 0) {
 /* if (isset($page_categorie)) { */
     //requete pour afficher les categories dans le selecteur html
 
-    echo $page_categorie;
+    
     $sql = mysqli_query($conn, "SELECT categories.* FROM categories ");
     $result_cat = mysqli_fetch_all($sql, MYSQLI_ASSOC);
 
@@ -101,11 +101,35 @@ echo "</pre>"; */
                 //savoir sur qu'elle page nous sommes 
                 if (isset($_GET['categorie'])) {
 
+                
+
+                    //requette pour compter les articles
+                $sql_count_articles_cat = mysqli_query($conn, "SELECT COUNT(articles.id_categorie) AS liste_cat FROM `articles` INNER JOIN `categories` ON categories.id = articles.id_categorie WHERE categories.nom = '$page_categorie'");
+                $count_articles_cat = mysqli_fetch_all($sql_count_articles_cat, MYSQLI_ASSOC);
+
+                $nbr_article_par_page_cat = 5;
+                $nbr_page_cat = ceil($count_articles_cat[0]["liste_cat"] / $nbr_article_par_page_cat);
+                $debut_cat = ($page - 1) * $nbr_article_par_page_cat;
+                
 
 
+                //requette pour afficher tous les articles
+                $sql_articles_cat = mysqli_query($conn, "SELECT articles.id, articles.titre, articles.date, articles.article, articles.id_utilisateur, articles.id_categorie, categories.nom 
+                FROM articles 
+                INNER JOIN categories ON categories.id = articles.id_categorie 
+                WHERE categories.nom = '$page_categorie' 
+                ORDER BY date 
+                DESC 
+                LIMIT $debut_cat");
+                $articles_cat = mysqli_fetch_all($sql_articles_cat, MYSQLI_ASSOC);
+// echo "<pre>";
+// var_dump($count_articles_cat);
 
+// echo "<pre>";
 
-                    for ($i = 1; $i <= $nbr_page_categorie; $i++) {
+                      
+
+                    for ($i = 1; $i <= $nbr_page_cat; $i++) {
                         if ($page != $i)
                             echo "<a class='page' href='?page=$i&categorie=$page_categorie'>$i</a>&nbsp";
                         else
@@ -119,7 +143,6 @@ echo "</pre>"; */
                             echo "<a class='page'>$i</a>&nbsp";
                     }
                 }
-
 
 
                 ?>
@@ -142,19 +165,35 @@ echo "</pre>"; */
 
                     $result = mysqli_fetch_all($sql_categories, MYSQLI_ASSOC);
                 }
-
-                // affichage des articles par catégorie
-                foreach ($result as $cat) {
+                echo "<pre>";
+                var_dump($result[0]['titre']);
+                echo "</pre>";
+                // affichage des articls par catégorie
+                if($_GET['page']==1){
+                for($i=0;isset($result[$i])&& $i<5;$i++) {
             ?>
 
-                    <div class="articleTitre"><?= $cat['titre'] ?></div>
-                    <div><?= $cat['article'] ?></div>
-                    <div><?= $cat['date'] ?></div>
-                    <div><?php echo '<a href="article.php?id=' . $cat['id'] . '">view article</a>'; ?></div>
+                    <div class="articleTitre"><?= $result[$i]['titre'] ?></div>
+                    <div><?= $result[$i]['article'] ?></div>
+                    <div><?= $result[$i]['date'] ?></div>
+                    <div><?php echo '<a href="article.php?id=' . $result[$i]['id'] . '">view article</a>'; ?></div>
 
 
                 <?php
                 }
+            }else{
+                for($i=5;isset($result[$i]) && $i<10;$i++) {
+                    ?>
+        
+                            <div class="articleTitre"><?= $result[$i]['titre'] ?></div>
+                            <div><?= $result[$i]['article'] ?></div>
+                            <div><?= $result[$i]['date'] ?></div>
+                            <div><?php echo '<a href="article.php?id=' . $result[$i]['id'] . '">view article</a>'; ?></div>
+        
+        
+                        <?php
+                        }
+            }
             } else {
                 // On boucle sur tous les articles
                 foreach ($articles as $article) {

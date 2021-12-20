@@ -82,6 +82,7 @@ body tr {
 
 .conteneur_accueil {
   width: 80%;
+  height: 500px;
   margin-left: 10%;
 }
 .conteneur_accueil div {
