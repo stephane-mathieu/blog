@@ -32,7 +32,7 @@ if (isset($_SESSION['user'])) {
 }
 
 
-$requete_con = mysqli_query($bdd, "SELECT * FROM `utilisateurs` WHERE `login` = '$newlog'");
+$requete_con = mysqli_query($conn, "SELECT * FROM `utilisateurs` WHERE `login` = '$newlog'");
 $requete_confetch = mysqli_fetch_all($requete_con, MYSQLI_ASSOC);
 
 
