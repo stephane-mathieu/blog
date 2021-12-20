@@ -1,5 +1,7 @@
 <?php
 
+// $user = 'root'; 
+// $pass = '';
 $user = 'root'; 
 $pass = 'root';
 

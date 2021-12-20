@@ -1,10 +1,9 @@
 <?php
 //connexion à la base
-$bdd = mysqli_connect("localhost","root","root","blog");
 
 //requete pour recuperer les articles et les afficher par 3
 
-$sql_affiche_article = mysqli_query($bdd, "SELECT * FROM `articles` ORDER BY `date` DESC LIMIT 3");
+$sql_affiche_article = mysqli_query($conn, "SELECT * FROM `articles` ORDER BY `date` DESC LIMIT 3");
 $affiche_article = mysqli_fetch_all($sql_affiche_article, MYSQLI_ASSOC);
  
 ?>

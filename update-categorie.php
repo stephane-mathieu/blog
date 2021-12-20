@@ -35,17 +35,15 @@ $cat = $_POST['categorie'];
 </head>
 <body>
 <?php require('header.php') ?>
-    <main>
-        <div class="container col-5 position-absolute top-50 start-50 translate-middle">
-            <form  class ="row g-3"action="" method="POST">
-            <div class="form-group">
+<main class="mainForm">
+            <form  class ="form"action="" method="POST">
+            <div class="formSection">
                     <label for="login">modifier la  categorie:</label><br>
-                    <input type="categorie" name="categorie" class="form-control" placeholder="Login"  value ="<?php echo $result[0]['nom'] ?>" autocomplete="off">
+                    <input type="text" name="categorie" class="formText" placeholder="Login"  value ="<?php echo $result[0]['nom'] ?>" autocomplete="off">
             </div>
-                <button class="btn btn-primary"  name = "submit" type="submit">Valider</button>
+                <button class="formButton"  name = "submit" type="submit">Valider</button>
             </form>
-        <div>
-    </main>
+</main>
 </body>
 </html>
 
