@@ -1,5 +1,5 @@
 <?php
-    // session_start();
+    session_start();
     require('./DATABASE/database-sqli.php');
     $test = $_GET['id'];
     if(isset($_SESSION['admin'])){
