@@ -3,12 +3,9 @@ session_start();
 error_reporting(0);
 //connexion a la bdd
 require('./DATABASE/connect-data-base.php');
-<<<<<<< HEAD
-=======
 require('./DATABASE/database-sqli.php');
 
 
->>>>>>> correction
 //
 
 //recup de la session conn
@@ -37,10 +34,6 @@ if (isset($_SESSION['user'])) {
     
 }
 
-<<<<<<< HEAD
-=======
-
->>>>>>> correction
 $requete_con = mysqli_query($conn, "SELECT * FROM `utilisateurs` WHERE `login` = '$newlog'");
 $requete_confetch = mysqli_fetch_all($requete_con, MYSQLI_ASSOC);
 

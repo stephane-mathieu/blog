@@ -43,33 +43,6 @@ if(isset($_GET['categorie']))
     $sql = mysqli_query($conn, "SELECT categories.* FROM categories ");
     $result_cat = mysqli_fetch_all($sql, MYSQLI_ASSOC);
 
-  /*   $sql_recup = mysqli_query($conn, "SELECT categories.*, articles.id_categorie FROM categories INNER JOIN articles WHERE categories.id = articles.id_categorie;");
-    $result_article_tri = mysqli_fetch_all($sql_recup, MYSQLI_ASSOC); */
-
-
-
-    /* $sql_categori = mysqli_query($conn, "SELECT articles.id, articles.titre, articles.date,  articles.id_utilisateur, articles.id_categorie, categories.nom 
-FROM articles 
-INNER JOIN categories ON categories.id = articles.id_categorie 
-WHERE categories.nom = '$page_categorie'"); */
-
-
-
-
-
-
-    /* $result1 = mysqli_fetch_all($sql_categori, MYSQLI_ASSOC); */
-
-    /* echo "<pre>";
-var_dump($result1);
-echo "</pre>"; */
-/* } */
-
-
-
-
-
-
 
 ?>
 
