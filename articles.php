@@ -10,7 +10,11 @@ $count_articles = mysqli_fetch_all($sql_count_articles, MYSQLI_ASSOC);
 
 
 //pagination
-@$page = $_GET["page"];
+$page = "";
+if(isset($_GET['page']))
+{
+    $page = $_GET["page"];
+}
 
 if (empty($page)) {
     $page = 1;
@@ -27,7 +31,10 @@ if (count($articles) == 0) {
     header("location: articles.php");
 }
 
-@$page_categorie = $_GET['categorie'];
+if(isset($_GET['categorie']))
+{
+    $page_categorie = $_GET['categorie'];
+}
 
 /* if (isset($page_categorie)) { */
     //requete pour afficher les categories dans le selecteur html
@@ -165,11 +172,10 @@ echo "</pre>"; */
 
                     $result = mysqli_fetch_all($sql_categories, MYSQLI_ASSOC);
                 }
-                echo "<pre>";
-                var_dump($result[0]['titre']);
-                echo "</pre>";
+                
                 // affichage des articls par catégorie
-                if($_GET['page']==1){
+                if(isset($_GET['page']) && $_GET['page']==1){
+                    
                 for($i=0;isset($result[$i])&& $i<5;$i++) {
             ?>
 

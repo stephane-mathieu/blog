@@ -1,5 +1,9 @@
 <?php
-    session_start();
+    if(!isset($_SESSION))
+    {
+      session_start();
+    }
+    // error_reporting(0);
     require('./DATABASE/database-sqli.php');
     if(isset($_SESSION['admin'])){
         $req = "SELECT * FROM utilisateurs";
@@ -14,11 +18,12 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="./css/style.css">
     <title>Admin</title>
 </head>
 <body>
 <?php require('header.php') ?>
-<main>
+<main class="container"> 
   <table class="table table-success table-striped">
   <thead>
     <tr>
@@ -32,7 +37,7 @@
   <tbody>
     <?php
       if(isset($_SESSION['admin'])){
-    echo'<a href="add.php">ajouter un user</a>';
+    echo'<a class ="formButton btnAdmin" href="add.php">ajouter un user</a>';
       }?>
   <?php foreach ($result as $st) {  ?>
                     <tr>

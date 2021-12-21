@@ -1,7 +1,10 @@
 <?php
 session_start();
+error_reporting(0);
 //connexion a la bdd
 require('./DATABASE/connect-data-base.php');
+require('./DATABASE/database-sqli.php');
+
 
 //
 
@@ -9,9 +12,9 @@ require('./DATABASE/connect-data-base.php');
 $sessLogin = $_SESSION['user'];
 $sessPasswrd = $_SESSION['userPass'];
 $id = $_SESSION['userId'];
-$newlog = $_POST['login'];
+$newlog = isset($_POST['login']) ? $_POST['login'] : '' ;
 
-$password =  $_POST['password'];
+$password =  isset($_POST['password']) ? $_POST['password'] : '';
 $hashed_pwrd = password_hash($password, PASSWORD_DEFAULT);
 $newpassWrd = $hashed_pwrd;
 
@@ -82,7 +85,7 @@ $requete_confetch = mysqli_fetch_all($requete_con, MYSQLI_ASSOC);
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css" type="text/css">
+    <link rel="stylesheet" href="./css/style.css">
     <title>Profil</title>
 </head>
 <body class="profilBody">

@@ -1,6 +1,8 @@
 <?php
-session_start();
-// Connexion BDD utilisateurs
+   if(!isset($_SESSION))
+   {
+     session_start();
+   }// Connexion BDD utilisateurs
 require('./DATABASE/database-sqli.php');
 
 
@@ -26,11 +28,12 @@ $result_article_tri = mysqli_fetch_all($sql_recup, MYSQLI_ASSOC);
         <nav class = "menuNav">
             <ul>
                 <li><a href="index.php">Accueil</a></li>
-                <li><a href="articles.php">Articles</a></li>
+                <li><a href="articles.php?page=1">Articles</a></li>
                     <li ><a href="index.php">Catégories
                         <ul>
                             <?php foreach ($result_cat as $cat) { ?>
-                                <li class = "dropdown"><a href="articles.php?categorie=<?= $cat['nom'] ?>"><?= $cat['nom'] ?></a></li>
+                                <li class = "dropdown"><a href="articles.php?categorie=<?= $cat['nom'] ?>&page=1">
+                                <?= $cat['nom'] ?></a></li>
                                 <?php
                                 ?>
                             <?php } ?> 
