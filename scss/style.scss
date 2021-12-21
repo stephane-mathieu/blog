@@ -44,6 +44,16 @@ body{
     padding: 20px;
 }
 
+// .categorie{
+
+// }
+
+.menu {
+    width: 100%;
+    height: 10vh;
+
+}
+
 .menuNav{
     font-family: "PPRightGothic-Medium";
     
@@ -83,11 +93,20 @@ body tr{
     
 }
 .conteneur_accueil {
-    width: 100%;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-30%, -50%);
+    // width: 100%;
+    // position: absolute;
+    // top: 50%;
+    // left: 50%;
+    // transform: translate(-30%, -50%);
+    width: 80%;
+    height: 500px;
+    margin-left: 10%;
+    div{
+        margin-top: 4px;
+    }
+    a{
+      margin-top: 1%;
+    }
    
 }
 
@@ -122,6 +141,8 @@ body tr{
     border-top: none;
     border-left: none;
     border-right: none;
+    cursor: pointer;
+    font-family: "PPRightGothic-Medium";
   }
 
   .formText:focus {
@@ -135,6 +156,8 @@ select{
     border-top: none;
     border-left: none;
     border-right: none;
+    border-bottom: none;
+    font-family: "PPRightGothic-Medium";
 }
 .btnNav{
     border: none;
@@ -161,23 +184,30 @@ tr {
 
 }
 
-.test {
+.pagination{
+    width: 100%;
     display: flex;
     justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    width: 100%;
-    height: 80vh;
 }
+// .test {
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+//     flex-direction: column;
+//     width: 100%;
+//     height: 80vh;
+// }
 
 .container {
-    // position: absolute;
-    // bottom: 40%;
-    // left: 40%;
-    margin-top: 10%;
+    
     order: 2;
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 80vh;
+
 }
 .btnArticle{
     margin-top: 10%;
@@ -186,13 +216,12 @@ tr {
     cursor: pointer;
 }
 .footer{
-	position: absolute; 
-    bottom: 0; 
-    left: 0; 
-    right: 0;
+	// position: absolute; 
+    height: 10vh;
+    width: 100%;
     padding:10px 0px ;
     display: flex;
-    justify-content: flex-start;
+    justify-content: center;
     flex-direction: column;
     ul{
         
@@ -208,5 +237,24 @@ tr {
 }
 
 .conteneur_accueil .articleTitre{
-    font-size: 4rem ;
+    font-size: 2rem ;
+}
+
+.table-article{
+    width: 80%;
+}
+
+.containerOver {
+    overflow: scroll;
+}
+
+.btnRetour{
+    width: 100%;
+    height: 10%;
+   
+}
+
+.btnAdmin{
+
+    margin-bottom: 20px;
 }

@@ -8,7 +8,7 @@ session_start();
 
 $test = $_GET['id'];
 
-$oi = $_POST['categorie'];
+$page_categorie = $_POST['categorie'];
 $article = $_POST['article'];
 $new_date = $_POST['date-time'];
 
@@ -18,7 +18,7 @@ $DateAndTime = date('Y-m-d h:i:s', time());
 
 
 
-$sql_categori = mysqli_query($conn, "SELECT * FROM `categories` WHERE `nom` = '$oi'");
+$sql_categori = mysqli_query($conn, "SELECT * FROM `categories` WHERE `nom` = '$page_categorie'");
 $result1 = mysqli_fetch_all($sql_categori, MYSQLI_ASSOC);
 $id_categorie = $result1[0]['id'];
 
@@ -48,7 +48,12 @@ if(isset($_POST['submit'])){
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<<<<<<< HEAD
     <link rel="stylesheet" href="/css/style.css" type="text/css">
+=======
+    <link rel="stylesheet" href="./css/style.css">
+   
+>>>>>>> correction
     <title>Article</title>
 </head>
 <body>

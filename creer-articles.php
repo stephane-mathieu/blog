@@ -6,8 +6,8 @@
 
     @$loginnn = $_SESSION['user'];
 
-    @$oi = $_GET['categorie'];
-    $sql_categori = mysqli_query($conn, "SELECT * FROM `categories` WHERE `nom` = '$oi'");
+    @$page_categorie = $_GET['categorie'];
+    $sql_categori = mysqli_query($conn, "SELECT * FROM `categories` WHERE `nom` = '$page_categorie'");
     $result1 = mysqli_fetch_all($sql_categori, MYSQLI_ASSOC);
 
     //msg d'erreur
@@ -44,7 +44,7 @@
             echo "Veuillez rédiger un article.";
         }
 
-        if (($_GET['categorie']) == $oi) {
+        if (($_GET['categorie']) == $page_categorie) {
             $idcate = $result1[0]['id'];
             $categories = $idcate;
         }

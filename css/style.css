@@ -40,6 +40,11 @@ body a {
   padding: 20px;
 }
 
+.menu {
+  width: 100%;
+  height: 10vh;
+}
+
 .menuNav {
   font-family: "PPRightGothic-Medium";
   list-style-type: none;
@@ -76,11 +81,15 @@ body tr {
 }
 
 .conteneur_accueil {
-  width: 100%;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-30%, -50%);
+  width: 80%;
+  height: 500px;
+  margin-left: 10%;
+}
+.conteneur_accueil div {
+  margin-top: 4px;
+}
+.conteneur_accueil a {
+  margin-top: 1%;
 }
 
 .conteneur_accueil h1 {
@@ -116,6 +125,8 @@ body tr {
   border-top: none;
   border-left: none;
   border-right: none;
+  cursor: pointer;
+  font-family: "PPRightGothic-Medium";
 }
 
 .formText:focus {
@@ -130,6 +141,8 @@ select {
   border-top: none;
   border-left: none;
   border-right: none;
+  border-bottom: none;
+  font-family: "PPRightGothic-Medium";
 }
 
 .btnNav {
@@ -155,20 +168,20 @@ tr {
   border: solid 1px black;
 }
 
-.test {
+.pagination {
+  width: 100%;
   display: flex;
   justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  width: 100%;
-  height: 80vh;
 }
 
 .container {
-  margin-top: 10%;
   order: 2;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 80vh;
 }
 
 .btnArticle {
@@ -179,13 +192,11 @@ tr {
 }
 
 .footer {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
+  height: 10vh;
+  width: 100%;
   padding: 10px 0px;
   display: flex;
-  justify-content: flex-start;
+  justify-content: center;
   flex-direction: column;
 }
 .footer ul {
@@ -198,7 +209,24 @@ tr {
 }
 
 .conteneur_accueil .articleTitre {
-  font-size: 4rem;
+  font-size: 2rem;
+}
+
+.table-article {
+  width: 80%;
+}
+
+.containerOver {
+  overflow: scroll;
+}
+
+.btnRetour {
+  width: 100%;
+  height: 10%;
+}
+
+.btnAdmin {
+  margin-bottom: 20px;
 }
 
 /*# sourceMappingURL=style.css.map */
