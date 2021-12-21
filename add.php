@@ -90,6 +90,7 @@
     <title>Admin</title>
     <link rel="icon" type="image/x-icon" href="./assets/images/favicon.ico">
     <link href="./style/styles.css" rel="stylesheet">
+    <?php include ('meta.php') ?>
 </head>
 <body>
 <?php require('header.php') ?>

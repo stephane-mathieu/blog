@@ -8,7 +8,7 @@
 
 body {
   background-color: #e9e5de;
-  font-family: "PPRightGothic-Light";
+  font-family: "PPRightGothic-Light", "Barlow";
   overflow-x: hidden;
 }
 body a {
@@ -18,26 +18,18 @@ body a {
 }
 
 @font-face {
-  /* font-family: "PPEditorialNew-Regular";
-  src: url(assets/PPEditorialNew-Regular.otf) format("opentype"); */
-  /* font-family: "PPEditorialNew-Italic";
-  src: url(assets/PPEditorialNew-Italic.otf) format("opentype"); */
+  font-family: "PPEditorialNew-Regular";
+  src: url(assets/PPEditorialNew-Regular.otf) format("opentype");
+  font-family: "PPEditorialNew-Italic";
+  src: url(assets/PPEditorialNew-Italic.otf) format("opentype");
   font-family: "PPRightGothic-Medium";
   src: url(assets/PPRightGothic-Medium.otf) format("opentype");
-  src: url(assets/PPRightGothic-Medium.ttf) format("truetype");
-  src: url(assets/PPRightGothic-Medium.woff) format("woff");
-  
-  /* font-family: "PPEditorialNew-Ultralight";
-  src: url(assets/PPEditorialNew-Ultralight.otf) format("opentype"); */
+  font-family: "PPEditorialNew-Ultralight";
+  src: url(assets/PPEditorialNew-Ultralight.otf) format("opentype");
   font-family: "PPRightGothic-Light";
   src: url(assets/PPRightGothic-Light.otf) format("opentype");
-  src: url(assets/PPRightGothic-Light.ttf) format("truetype");
-  src: url(assets/PPRightGothic-Light.woff) format("woff");
-  
   font-family: "PPEditorialNew-UltraboldItalic";
   src: url(assets/PPEditorialNew-UltraboldItalic.otf) format("opentype");
-  src: url(assets/PPEditorialNew-UltraboldItalic.ttf) format("truetype");
-  src: url(assets/PPEditorialNew-UltraboldItalic.woff) format("woff");
 }
 ::-webkit-scrollbar {
   display: none;
@@ -84,10 +76,6 @@ body a {
   position: absolute;
 }
 
-body tr {
-  font-family: "PPRightGothic-Light";
-}
-
 .conteneur_accueil {
   width: 80%;
   height: 500px;
@@ -103,7 +91,8 @@ body tr {
 .conteneur_accueil h1 {
   margin-bottom: 40px;
   font-size: 6rem;
-  font-family: "PPEditorialNew-UltraboldItalic";
+  font-family: "DM Serif Display";
+  font-style: italic;
 }
 
 .mainForm {
@@ -134,7 +123,7 @@ body tr {
   border-left: none;
   border-right: none;
   cursor: pointer;
-  font-family: "PPRightGothic-Medium";
+  font-family: "PPRightGothic-Medium", "DM Serif Display";
 }
 
 .formText:focus {
@@ -150,13 +139,13 @@ select {
   border-left: none;
   border-right: none;
   border-bottom: none;
-  font-family: "PPRightGothic-Medium";
+  font-family: "PPRightGothic-Medium", "DM Serif Display";
 }
 
 .btnNav {
   border: none;
   cursor: pointer;
-  font-family: "PPRightGothic-Medium";
+  font-family: "PPRightGothic-Medium", "DM Serif Display";
   font-size: 16px;
 }
 

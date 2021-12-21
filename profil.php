@@ -86,6 +86,7 @@ $requete_confetch = mysqli_fetch_all($requete_con, MYSQLI_ASSOC);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/style.css">
     <title>Profil</title>
+    <?php include ('meta.php') ?>
 </head>
 <body class="profilBody">
 <?php require('header.php') ?>

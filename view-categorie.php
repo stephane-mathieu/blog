@@ -14,6 +14,7 @@ $result = mysqli_fetch_all($query,MYSQLI_ASSOC);
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link rel="stylesheet" href="./css/style.css">
+    <?php include ('meta.php') ?>
     <title>Categorie</title>
 </head>
 <body>

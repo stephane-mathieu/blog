@@ -17,6 +17,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Admin</title>
     <link rel="stylesheet" href="./css/style.css">
+    <?php include ('meta.php') ?>
 
 </head>
 <body>

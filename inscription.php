@@ -75,6 +75,7 @@
     <title>Sign Up</title>
     <link rel="icon" type="image/x-icon" href="./assets/images/favicon.ico">
     <link rel="stylesheet" href="./css/style.css">
+    <?php include ('meta.php') ?>
 
 </head>
 <body>

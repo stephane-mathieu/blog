@@ -32,7 +32,9 @@ if(isset($_POST['submit'])){
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/style.css">
+    <?php include ('meta.php') ?>
     <title>Article</title>
+    <?php include ('meta.php') ?>
 </head>
 <body>
 <?php require 'header.php'?>
@@ -40,26 +42,32 @@ if(isset($_POST['submit'])){
 <table class="table-article">
      <thead>
          <th>Article</th>
-         <th>Commentaire</th>
-         <th>login</th>
+         
+         <th>Login</th>
      </thead>
      <tbody>
-         <tr>
+        <tr>
              <td><?= $result[0]['article'] ?></td>
+        </tr>
+        <tr>
+        <th>Commentaire</th>
              <?php
             foreach($resultlog as $log){
                 if($log['id_article'] == $test){?>
+                <tr>
+
                     <td class="com"><?= $log['commentaire']?></td>
                     <td><?= $log['login']?></td><br>
                 <?php }
-            }
-            ?> 
+                }
+                ?> 
+                </tr>
         </tr>
      </tbody>
 </table>
 <div class="container">
     <form  class ="row g-3"action="" method="POST">
-    <textarea class="formText" name="commentaire"></textarea>
+    <textarea class="formText" name="commentaire" placeholder="ecrivez votre commentaire"></textarea>
     <button class="formButton btnArticle"  name = "submit" type="submit">Valider</button>
     </form>
 <div>
