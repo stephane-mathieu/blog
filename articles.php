@@ -74,14 +74,15 @@ if(isset($_GET['categorie']))
                         <option value="<?php echo $categorie['nom']; ?> "><?php echo $categorie['nom']; ?> </option>
                     <?php } ?>
                 </select>
-                <button name="submit" class="formButton">Valider</button>
+                <input type='hidden' name='page' value='1'>
+                <button type='submit' name="submit" class="formButton">Valider</button>
             </form>
             <div class="pagination">
                 <?php
                 //savoir sur qu'elle page nous sommes 
                 if (isset($_GET['categorie'])) {
 
-                
+                  
 
                     //requette pour compter les articles
                 $sql_count_articles_cat = mysqli_query($conn, "SELECT COUNT(articles.id_categorie) AS liste_cat FROM `articles` INNER JOIN `categories` ON categories.id = articles.id_categorie WHERE categories.nom = '$page_categorie'");
